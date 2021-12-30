@@ -19,9 +19,9 @@ class _SplashscreenState extends State<Splashscreen> {
           width: double.infinity,
           decoration: BoxDecoration(
               gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-                Colors.cyan.shade700,
-                Colors.cyan.shade300,
-                Colors.cyanAccent
+                Colors.black,
+                Colors.grey.shade700,
+                Colors.black,
               ])),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
