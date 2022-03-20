@@ -3,6 +3,37 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'dart:async';
+import 'dart:io';
+
+import 'package:uni_links/uni_links.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+void _launchURL(_url) async {
+  if (!await launch(_url)) throw 'Could not launch $_url';
+}
+
+// ...
+
+late StreamSubscription _sub;
+
+Future<void> initUniLinks() async {
+  // ... check initialUri
+
+  // Attach a listener to the stream
+  _sub = uriLinkStream.listen((Uri? uri) {
+    // Use the uri and warn the user, if it is not correct
+    print('URI RECEIVED #######################');
+    throw Exception('URL Received');
+  }, onError: (err) {
+    // Handle exception by warning the user their action did not succeed
+  });
+
+  // NOTE: Don't forget to call _sub.cancel() in dispose()
+}
+
+// ...
+
 Future<Album> fetchAlbum() async {
   final response = await http
       .get(Uri.parse('https://jsonplaceholder.typicode.com/albums/3'));
@@ -15,6 +46,47 @@ Future<Album> fetchAlbum() async {
     // If the server did not return a 200 OK response,
     // then throw an exception.
     throw Exception('Failed to load album');
+  }
+}
+
+Future<PlayList> fetchPlaylist() async {
+  var client_id = '9c9ca140425246ac88c2678fb27777db';
+  var redirect_uri = 'http://flutterbooksample.com';
+
+  var url = 'https://accounts.spotify.com/authorize';
+  url += '?response_type=token';
+  url += '&client_id=' + Uri.encodeComponent(client_id);
+  url += '&redirect_uri=' + Uri.encodeComponent(redirect_uri);
+
+  print(url);
+
+  _launchURL(url);
+
+  final response = await http.get(
+      //Uri.parse('https://api.spotify.com/v1/playlists/37i9dQZF1DX76Wlfdnj7AP'));
+      //Uri.parse(url));
+      Uri.parse('https://jsonplaceholder.typicode.com/albums/3'));
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return PlayList.fromJson(jsonDecode(response.body));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load album');
+  }
+}
+
+class PlayList {
+  final int followers;
+
+  const PlayList({
+    required this.followers,
+  });
+
+  factory PlayList.fromJson(Map<String, dynamic> json) {
+    return PlayList(followers: json['followers']['total']);
   }
 }
 
@@ -38,6 +110,17 @@ class Album {
   }
 }
 
+//#####################
+
+class TaskSevenDeepLink extends StatelessWidget {
+  const TaskSevenDeepLink({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
 class TaskSeven extends StatefulWidget {
   const TaskSeven({Key? key}) : super(key: key);
 
@@ -48,11 +131,52 @@ class TaskSeven extends StatefulWidget {
 class _TaskDashboardState extends State<TaskSeven> {
   final _playlistTextController = TextEditingController();
   var _text = TimeOfDay.now().toString();
-  late Future<Album> futureAlbum;
+  late final _accessToken;
+  late Future<PlayList> futurePL;
+
   @override
   void initState() {
     super.initState();
-    futureAlbum = fetchAlbum();
+    getAccessToken();
+  }
+
+  void getAccessToken() {
+    var client_id = '9c9ca140425246ac88c2678fb27777db';
+    var redirect_uri = 'http://flutterbooksample.com';
+
+    var url = 'https://accounts.spotify.com/authorize';
+    url += '?response_type=token';
+    url += '&client_id=' + Uri.encodeComponent(client_id);
+    url += '&redirect_uri=' + Uri.encodeComponent(redirect_uri);
+
+    _launchURL(url);
+
+    initUniLinks();
+  }
+
+  Future<void> initUniLinks() async {
+    // ... check initialUri
+
+    // Attach a listener to the stream
+    _sub = uriLinkStream.listen((Uri? uri) {
+      // Use the uri and warn the user, if it is not correct
+      final _uristr = uri.toString();
+
+      const start = "access_token=";
+      const end = "&";
+
+      final startIndex = _uristr.indexOf(start);
+      final endIndex = _uristr.indexOf(end, startIndex + start.length);
+
+      _accessToken = _uristr.substring(startIndex + start.length, endIndex);
+      print('URI RECEIVED #######################');
+      print(uri.toString());
+      print(_accessToken);
+    }, onError: (err) {
+      // Handle exception by warning the user their action did not succeed
+    });
+
+    // NOTE: Don't forget to call _sub.cancel() in dispose()
   }
 
   void updateTOD(String txt) {
@@ -100,12 +224,12 @@ class _TaskDashboardState extends State<TaskSeven> {
                 ),
               ),
             ),
-            Center(
-              child: FutureBuilder<Album>(
-                future: futureAlbum,
+            /*Center(
+              child: FutureBuilder<PlayList>(
+                future: futurePL,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    return Text(snapshot.data!.title);
+                    return Text(snapshot.data!.followers.toString());
                   } else if (snapshot.hasError) {
                     return Text('${snapshot.error}');
                   }
@@ -114,7 +238,7 @@ class _TaskDashboardState extends State<TaskSeven> {
                   return const CircularProgressIndicator();
                 },
               ),
-            ),
+            ),*/
           ]),
         ));
   }
