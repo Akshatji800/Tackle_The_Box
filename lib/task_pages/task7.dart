@@ -13,104 +13,31 @@ void _launchURL(_url) async {
   if (!await launch(_url)) throw 'Could not launch $_url';
 }
 
-// ...
-
 late StreamSubscription _sub;
 
-Future<void> initUniLinks() async {
-  // ... check initialUri
+class PlayList extends StatelessWidget {
+  const PlayList({Key? key, required this.name, required this.tracks})
+      : super(key: key);
 
-  // Attach a listener to the stream
-  _sub = uriLinkStream.listen((Uri? uri) {
-    // Use the uri and warn the user, if it is not correct
-    print('URI RECEIVED #######################');
-    throw Exception('URL Received');
-  }, onError: (err) {
-    // Handle exception by warning the user their action did not succeed
-  });
-
-  // NOTE: Don't forget to call _sub.cancel() in dispose()
-}
-
-// ...
-
-Future<Album> fetchAlbum() async {
-  final response = await http
-      .get(Uri.parse('https://jsonplaceholder.typicode.com/albums/3'));
-
-  if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    return Album.fromJson(jsonDecode(response.body));
-  } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load album');
-  }
-}
-
-Future<PlayList> fetchPlaylist() async {
-  var client_id = '9c9ca140425246ac88c2678fb27777db';
-  var redirect_uri = 'http://flutterbooksample.com';
-
-  var url = 'https://accounts.spotify.com/authorize';
-  url += '?response_type=token';
-  url += '&client_id=' + Uri.encodeComponent(client_id);
-  url += '&redirect_uri=' + Uri.encodeComponent(redirect_uri);
-
-  print(url);
-
-  _launchURL(url);
-
-  final response = await http.get(
-      //Uri.parse('https://api.spotify.com/v1/playlists/37i9dQZF1DX76Wlfdnj7AP'));
-      //Uri.parse(url));
-      Uri.parse('https://jsonplaceholder.typicode.com/albums/3'));
-
-  if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    return PlayList.fromJson(jsonDecode(response.body));
-  } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load album');
-  }
-}
-
-class PlayList {
-  final int followers;
-
-  const PlayList({
-    required this.followers,
-  });
+  final String name;
+  final int tracks;
 
   factory PlayList.fromJson(Map<String, dynamic> json) {
-    return PlayList(followers: json['followers']['total']);
+    return PlayList(name: json['name'], tracks: json['tracks']);
   }
-}
 
-class Album {
-  final int userId;
-  final int id;
-  final String title;
-
-  const Album({
-    required this.userId,
-    required this.id,
-    required this.title,
-  });
-
-  factory Album.fromJson(Map<String, dynamic> json) {
-    return Album(
-      userId: json['userId'],
-      id: json['id'],
-      title: json['title'],
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 2.0),
+      decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Flexible(flex: 1, fit: FlexFit.loose, child: Text(name)),
+        Flexible(flex: 1, fit: FlexFit.loose, child: Text(tracks.toString()))
+      ]),
     );
   }
 }
-
-//#####################
 
 class TaskSevenDeepLink extends StatelessWidget {
   const TaskSevenDeepLink({Key? key}) : super(key: key);
@@ -131,13 +58,49 @@ class TaskSeven extends StatefulWidget {
 class _TaskDashboardState extends State<TaskSeven> {
   final _playlistTextController = TextEditingController();
   var _text = TimeOfDay.now().toString();
-  late final _accessToken;
+  var _accessToken;
+  List<PlayList> _playlists = [];
   late Future<PlayList> futurePL;
 
   @override
   void initState() {
     super.initState();
     getAccessToken();
+    _playlists.add(PlayList(name: 'Test T1', tracks: 20));
+    //futurePL = fetchPlaylist();
+  }
+
+  Future<void> fetchPlaylist(String userID) async {
+    Uri _uri = Uri.parse('https://api.spotify.com/v1/users/smedjan/playlists');
+//BQA4PIuYxY0kk_Ca2IBdkV5uLf6BM9DxKVn8DRmynZ6E04aVqacPZDWjI77OLSpbn5ysPv9OJqS_LK20HjeQdwkevgTSX1Kkcy4IjJ20GhKx2gPjdBSqE4_BADh1Pls70zcbMBiAEjyZzGIxzfuiuzVZxhnjmCDYfzg';
+    print(
+        '########################################## TOKEN ##################################');
+    print(_accessToken);
+    final response = await http.get(_uri, headers: {
+      'Authorization': 'Bearer ' + _accessToken,
+      'Content-Type': 'application/json'
+    });
+
+    print('Requesting URI');
+    print(_uri.toString());
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      //return PlayList.fromJson(jsonDecode(response.body));
+      Map<String, dynamic> myMap = json.decode(response.body);
+
+      for (var item in myMap['items']) {
+        var trk = item['tracks']['total'];
+        _playlists.add(PlayList(name: item['name'], tracks: trk));
+      }
+      setState(() {});
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      print(response.statusCode);
+      throw Exception('Failed to load album');
+    }
   }
 
   void getAccessToken() {
@@ -169,20 +132,16 @@ class _TaskDashboardState extends State<TaskSeven> {
       final endIndex = _uristr.indexOf(end, startIndex + start.length);
 
       _accessToken = _uristr.substring(startIndex + start.length, endIndex);
-      print('URI RECEIVED #######################');
+      print(
+          '################################################# URI RECEIVED #########################################################################');
       print(uri.toString());
       print(_accessToken);
+      throw Exception('Uri Received');
     }, onError: (err) {
       // Handle exception by warning the user their action did not succeed
     });
 
     // NOTE: Don't forget to call _sub.cancel() in dispose()
-  }
-
-  void updateTOD(String txt) {
-    _text = TimeOfDay.now().toString();
-    //_text = http.get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1')).toString();
-    setState(() {});
   }
 
   @override
@@ -212,7 +171,7 @@ class _TaskDashboardState extends State<TaskSeven> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   controller: _playlistTextController,
-                  onSubmitted: updateTOD,
+                  onSubmitted: fetchPlaylist,
                   decoration: const InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -224,21 +183,14 @@ class _TaskDashboardState extends State<TaskSeven> {
                 ),
               ),
             ),
-            /*Center(
-              child: FutureBuilder<PlayList>(
-                future: futurePL,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return Text(snapshot.data!.followers.toString());
-                  } else if (snapshot.hasError) {
-                    return Text('${snapshot.error}');
-                  }
-
-                  // By default, show a loading spinner.
-                  return const CircularProgressIndicator();
-                },
+            Flexible(
+              child: ListView.builder(
+                padding: const EdgeInsets.all(8.0),
+                reverse: true,
+                itemBuilder: (_, index) => _playlists[index],
+                itemCount: _playlists.length,
               ),
-            ),*/
+            ),
           ]),
         ));
   }
