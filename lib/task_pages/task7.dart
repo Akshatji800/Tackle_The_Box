@@ -1,10 +1,11 @@
 import 'dart:convert';
 
+import 'package:charts_flutter/flutter.dart' as charts;
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'dart:async';
-import 'dart:io';
 
 import 'package:uni_links/uni_links.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -13,38 +14,35 @@ void _launchURL(_url) async {
   if (!await launch(_url)) throw 'Could not launch $_url';
 }
 
+const String _basePlaylistUrl =
+    'https://api.spotify.com/v1/users/smedjan/playlists?limit=50';
+//'https://api.spotify.com/v1/me/playlists?limit=50';
+const String _baseUserUrl = 'https://api.spotify.com/v1/me';
+
 late StreamSubscription _sub;
 
 class PlayList extends StatelessWidget {
-  const PlayList({Key? key, required this.name, required this.tracks})
+  const PlayList(
+      {Key? key, required this.name, required this.tracks, required this.index})
       : super(key: key);
 
   final String name;
   final int tracks;
+  final int index;
 
-  factory PlayList.fromJson(Map<String, dynamic> json) {
-    return PlayList(name: json['name'], tracks: json['tracks']);
+  factory PlayList.fromJson(Map<String, dynamic> json, int index) {
+    return PlayList(name: json['name'], tracks: json['tracks'], index: index);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 2.0),
-      decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+    return Card(
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Flexible(flex: 1, fit: FlexFit.loose, child: Text(name)),
-        Flexible(flex: 1, fit: FlexFit.loose, child: Text(tracks.toString()))
+        Flexible(flex: 1, fit: FlexFit.loose, child: Text(index.toString())),
+        Flexible(flex: 1, fit: FlexFit.tight, child: Text(name)),
+        Flexible(flex: 1, fit: FlexFit.loose, child: Text(tracks.toString())),
       ]),
     );
-  }
-}
-
-class TaskSevenDeepLink extends StatelessWidget {
-  const TaskSevenDeepLink({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }
 
@@ -56,23 +54,31 @@ class TaskSeven extends StatefulWidget {
 }
 
 class _TaskDashboardState extends State<TaskSeven> {
-  final _playlistTextController = TextEditingController();
-  var _text = TimeOfDay.now().toString();
   var _accessToken;
   List<PlayList> _playlists = [];
-  late Future<PlayList> futurePL;
+  String userName = '';
+  final _graphScrollController = ScrollController();
+  final _listScrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     getAccessToken();
-    _playlists.add(PlayList(name: 'Test T1', tracks: 20));
-    //futurePL = fetchPlaylist();
+    _playlists.add(const PlayList(name: 'No Data', tracks: 0, index: 0));
   }
 
-  Future<void> fetchPlaylist(String userID) async {
-    Uri _uri = Uri.parse('https://api.spotify.com/v1/users/smedjan/playlists');
-//BQA4PIuYxY0kk_Ca2IBdkV5uLf6BM9DxKVn8DRmynZ6E04aVqacPZDWjI77OLSpbn5ysPv9OJqS_LK20HjeQdwkevgTSX1Kkcy4IjJ20GhKx2gPjdBSqE4_BADh1Pls70zcbMBiAEjyZzGIxzfuiuzVZxhnjmCDYfzg';
+  void clearData() {
+    _playlists.clear();
+    setState(() {});
+  }
+
+  void getData() {
+    fetchPlaylist();
+    setState(() {});
+  }
+
+  void getUserName() async {
+    Uri _uri = Uri.parse(_baseUserUrl);
     print(
         '########################################## TOKEN ##################################');
     print(_accessToken);
@@ -85,19 +91,62 @@ class _TaskDashboardState extends State<TaskSeven> {
     print(_uri.toString());
 
     if (response.statusCode == 200) {
-      // If the server did return a 200 OK response,
-      // then parse the JSON.
-      //return PlayList.fromJson(jsonDecode(response.body));
       Map<String, dynamic> myMap = json.decode(response.body);
+      userName = myMap['display_name'];
+      setState(() {});
+    }
+  }
 
+  Future<void> fetchPlaylist() async {
+    Uri _uri = Uri.parse(_basePlaylistUrl);
+    print(
+        '########################################## TOKEN ##################################');
+    print(_accessToken);
+    final response = await http.get(_uri, headers: {
+      'Authorization': 'Bearer ' + _accessToken,
+      'Content-Type': 'application/json'
+    });
+
+    print('Requesting URI');
+    print(_uri.toString());
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> myMap = json.decode(response.body);
+      final int _total = myMap['total'];
+      int _offset = 0;
       for (var item in myMap['items']) {
         var trk = item['tracks']['total'];
-        _playlists.add(PlayList(name: item['name'], tracks: trk));
+        _playlists.add(PlayList(
+          name: item['name'],
+          tracks: trk,
+          index: _playlists.length,
+        ));
+      }
+
+      if (_playlists.length < _total) {
+        _offset = _playlists.length;
+        _uri = Uri.parse(_basePlaylistUrl + ('&offset=' + _offset.toString()));
+        final response = await http.get(_uri, headers: {
+          'Authorization': 'Bearer ' + _accessToken,
+          'Content-Type': 'application/json'
+        });
+
+        print('Requesting URI');
+        print(_uri.toString());
+
+        Map<String, dynamic> myMap = json.decode(response.body);
+
+        for (var item in myMap['items']) {
+          var trk = item['tracks']['total'];
+          _playlists.add(PlayList(
+            name: item['name'],
+            tracks: trk,
+            index: (_playlists.length + 1),
+          ));
+        }
       }
       setState(() {});
     } else {
-      // If the server did not return a 200 OK response,
-      // then throw an exception.
       print(response.statusCode);
       throw Exception('Failed to load album');
     }
@@ -136,7 +185,10 @@ class _TaskDashboardState extends State<TaskSeven> {
           '################################################# URI RECEIVED #########################################################################');
       print(uri.toString());
       print(_accessToken);
-      throw Exception('Uri Received');
+
+      clearData();
+      getData();
+      getUserName();
     }, onError: (err) {
       // Handle exception by warning the user their action did not succeed
     });
@@ -145,53 +197,197 @@ class _TaskDashboardState extends State<TaskSeven> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _sub.cancel();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Task-7',
-            style: TextStyle(color: Colors.white),
-          ),
-          backgroundColor: Colors.yellow.shade800,
-          elevation: 1,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Colors.white,
+    return MaterialApp(
+      theme: _buildSpotifyTheme(),
+      home: Scaffold(
+          resizeToAvoidBottomInset: false,
+          appBar: AppBar(
+            title: const Text(
+              'Task-7',
+              style: TextStyle(color: Colors.white),
+            ),
+            backgroundColor: Color(0xff1db954),
+            elevation: 1,
+            leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              ),
             ),
           ),
-        ),
-        body: Container(
-          child: Column(children: <Widget>[
-            Flexible(
-              child: Container(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: _playlistTextController,
-                  onSubmitted: fetchPlaylist,
-                  decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 77, 201, 81),
-                            width: 2.0),
+          body: Container(
+            child: Column(children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Center(
+                    child: Text(
+                  'Welcome! ' + userName,
+                  style: Theme.of(context).textTheme.headline5,
+                )),
+              ),
+              Column(
+                children: <Widget>[
+                  Card(
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Flexible(
+                              flex: 1,
+                              fit: FlexFit.loose,
+                              child: Text('INDEX')),
+                          Flexible(
+                              flex: 1, fit: FlexFit.tight, child: Text('NAME')),
+                          Flexible(
+                              flex: 1,
+                              fit: FlexFit.loose,
+                              child: Text('TRACKS')),
+                        ]),
+                  ),
+                  SizedBox(
+                    height: 280,
+                    child: Scrollbar(
+                      isAlwaysShown: true,
+                      controller: _listScrollController,
+                      child: ListView.builder(
+                        controller: _listScrollController,
+                        padding: const EdgeInsets.all(8.0),
+                        itemBuilder: (_, index) => _playlists[index],
+                        itemCount: _playlists.length,
                       ),
-                      hintText: 'Enter Plalist Name'),
-                  //onSubmitted: (playlistTextController.text) {},
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [Text('Total ' + _playlists.length.toString())],
                 ),
               ),
-            ),
-            Flexible(
-              child: ListView.builder(
-                padding: const EdgeInsets.all(8.0),
-                reverse: true,
-                itemBuilder: (_, index) => _playlists[index],
-                itemCount: _playlists.length,
+              Row(children: [
+                const RotatedBox(
+                    quarterTurns: -1,
+                    child:
+                        Text('Tracks', style: TextStyle(color: Colors.black))),
+                Expanded(
+                  child: Scrollbar(
+                    isAlwaysShown: true,
+                    scrollbarOrientation: ScrollbarOrientation.bottom,
+                    controller: _graphScrollController,
+                    child: SingleChildScrollView(
+                      //padding: EdgeInsets.all(10.0),
+                      scrollDirection: Axis.horizontal,
+                      controller: _graphScrollController,
+                      child: SizedBox(
+                          width: _playlists.length * 20 > 200
+                              ? _playlists.length * 20
+                              : 200,
+                          height: 300,
+                          child:
+                              Expanded(child: PlayListChart(data: _playlists))),
+                    ),
+                  ),
+                ),
+              ]),
+              const Center(
+                  child:
+                      Text('Playlist', style: TextStyle(color: Colors.black))),
+              ButtonBar(
+                children: <Widget>[
+                  TextButton(onPressed: clearData, child: const Text('CLEAR')),
+                  ElevatedButton(
+                      onPressed: getData,
+                      child: const Text(
+                        'REFRESH',
+                        style: TextStyle(color: Colors.white),
+                      ))
+                ],
               ),
-            ),
-          ]),
-        ));
+            ]),
+          )),
+    );
   }
+}
+
+class PlayListChart extends StatelessWidget {
+  final List<PlayList> data;
+
+  PlayListChart({required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    List<charts.Series<PlayList, String>> series = [
+      charts.Series(
+          id: "tracks",
+          data: data,
+          domainFn: (PlayList series, _) => series.index.toString(),
+          measureFn: (PlayList series, _) => series.tracks),
+    ];
+
+    return charts.BarChart(
+      series,
+      animate: true,
+    );
+  }
+}
+
+ThemeData _buildSpotifyTheme() {
+  final ThemeData base = ThemeData.light();
+  return base.copyWith(
+    colorScheme: base.colorScheme.copyWith(
+      primary: Color(0xff1db954),
+      onPrimary: Color(0xff1ed760),
+      secondary: Color(0xff1ed760),
+      error: Colors.red,
+    ),
+    textTheme: _buildSpotifyTextTheme(base.textTheme),
+    textSelectionTheme: const TextSelectionThemeData(
+      selectionColor: Color(0xff1db954),
+    ),
+    /*inputDecorationTheme: const InputDecorationTheme(
+      focusedBorder: CutCornersBorder(
+        borderSide: BorderSide(
+          width: 2.0,
+          color: Color(0xff1ed760),
+        ),
+      ),
+      border: CutCornersBorder(),
+    ),*/
+  );
+}
+
+TextTheme _buildSpotifyTextTheme(TextTheme base) {
+  return base
+      .copyWith(
+        headline5: base.headline5!.copyWith(
+          fontWeight: FontWeight.w500,
+        ),
+        headline6: base.headline6!.copyWith(
+          fontSize: 18.0,
+        ),
+        caption: base.caption!.copyWith(
+          fontWeight: FontWeight.w400,
+          fontSize: 14.0,
+        ),
+        bodyText1: base.bodyText1!.copyWith(
+          fontWeight: FontWeight.w500,
+          fontSize: 16.0,
+        ),
+      )
+      .apply(
+        fontFamily: 'Rubik',
+        displayColor: Color(0xff1db954),
+        bodyColor: Color(0xff1db954),
+      );
 }
