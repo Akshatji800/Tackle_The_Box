@@ -33,140 +33,161 @@ import 'package:charts_flutter/flutter.dart' as charts;
 // }
 //}
 
-////// I F   Y O U   W A N T   T O   T E S T   T H E   A P I   F U N C T I O N A L I T Y   C O P Y   T H E   B A R E R   T O K E N   A N D   R E P L A C E
-//////   T H E   O L D   B E A R E R   T O K E N   W I T H   A   N E W   O N E   I T   I N   L I N E   4 1   A F T E R   " B e a r e r "
-
 Future<Map> getData() async {
+  //
+//
+  //
+  var data1 = {
+    'client_id': '8f0c491b37604d0587ecc65bf9557a18',
+    'client_secret': '3cb403e55f2348389d31af17cb1e7c70',
+    'grant_type': 'refresh_token',
+    'refresh_token':
+        'AQAuAKP--flXpdWujHuyxJQugSdEiyT9jCsxFbkxR84s95fALy0orVodcNnRKwa12HfgyUWt4LpYXzJcm--n4mTtEoTvIFfDOG5wS0EHO4KmX-c5Rfvj1gK8xQjyj9OL1UY',
+    'code':
+        'AQAEEcAHkWYTh32OY2SKyiwsMSFWA03T2dcWw1fIcM24FtB_4eR_PImscKgpcNGmkQoQSXlclA-8Y7n9OF62WbyHx5cJ4VSEGqqj13BR4JiVYkhT796ffidYtUMc42nc33SV5_6ppLnVcOvoBvx4scX91jEZvlLzfJWL8P9kJokfzbDLDGOLxqUgFd2yHvrSBuIGrpmRQQ',
+    'redirect_uri': 'http://example.com/callback/',
+  };
+
+  var url1 = Uri.parse('https://accounts.spotify.com/api/token');
+  var res1 = await http.post(url1, body: data1);
+  if (res1.statusCode != 200)
+    throw Exception('http.post error: statusCode= ${res1.statusCode}');
+  print(res1.body);
+  final parsed1 = json.decode(res1.body).cast<String, dynamic>();
+  print(parsed1['access_token']);
+  print(parsed1['refresh_token']);
+
+  var Bearer = parsed1['access_token'];
+
+  //
+  //
+
   var headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization':
-        'Bearer BQBEztXmVnzbdKVcc3jSXZy16wTXYwJt3op9dPM_8TpiZ-IC43wqYqzzzdF8RwlAxjErFLlNSLUyW4b8Ef_EUWn-VwYo9ojoFSfP7AQScYoK3G9M3XzhCT5gCX4UpTQtmF1CeLYFkPMVa9Q92Q_X00n8kNFBCN3WSCKHNCuqcNKElrfNmjjzqvbI1SXi49eBdKwKe-n0VSJpizgaDFk7jjTLU6W9bDeH',
+    'Authorization': 'Bearer $Bearer',
   };
-  try {
-    var url = Uri.parse('https://api.spotify.com/v1/me/playlists');
-    var res = await http.get(url, headers: headers);
-    if (res.statusCode != 200)
-      throw Exception('http.get error: statusCode= ${res.statusCode}');
+  //try {
+  var url = Uri.parse('https://api.spotify.com/v1/me/playlists');
+  var res = await http.get(url, headers: headers);
+  if (res.statusCode != 200)
+    throw Exception('http.get error: statusCode= ${res.statusCode}');
 
-    final parsed = json.decode(res.body).cast<String, dynamic>();
-    var total = parsed['total'];
-    List<String> playlist_links = [];
-    List<String> playlist_name = [];
-    List<int> playlist_likes = [];
-    List<int> playlist_song_count = [];
-    List<String> playlist_pic_link = [];
+  final parsed = json.decode(res.body).cast<String, dynamic>();
+  var total = parsed['total'];
+  List<String> playlist_links = [];
+  List<String> playlist_name = [];
+  List<int> playlist_likes = [];
+  List<int> playlist_song_count = [];
+  List<String> playlist_pic_link = [];
 
-    //FOR COLLECTING LINKS AND NAMES OF " P L A Y   L I S T S"
+  //FOR COLLECTING LINKS AND NAMES OF " P L A Y   L I S T S"
 
-    for (int i = 1; i <= total; i++) {
-      //print();
-      playlist_links.add(parsed['items'][i - 1]['href']);
-      playlist_name.add(parsed['items'][i - 1]['name']);
-      try {
-        playlist_pic_link.add(parsed['items'][i - 1]['images'][0]['url']);
-      } catch (s) {
-        playlist_pic_link.add(
-            "https://images-na.ssl-images-amazon.com/images/I/61E1238sN%2BL.__AC_SY300_QL70_ML2_.jpg");
-      }
-      ;
-      //print('\n\n');
+  for (int i = 1; i <= total; i++) {
+    //print();
+    playlist_links.add(parsed['items'][i - 1]['href']);
+    playlist_name.add(parsed['items'][i - 1]['name']);
+    try {
+      playlist_pic_link.add(parsed['items'][i - 1]['images'][0]['url']);
+    } catch (s) {
+      playlist_pic_link.add(
+          "https://images-na.ssl-images-amazon.com/images/I/61E1238sN%2BL.__AC_SY300_QL70_ML2_.jpg");
     }
-    print(playlist_pic_link);
-
-    //FOR COLLECTING LIKES OF " P L A Y   L I S T S"
-
-    for (int i = 1; i <= total; i++) {
-      var link = playlist_links[i - 1];
-      var url_temp = Uri.parse(link);
-      var res_temp = await http.get(url_temp, headers: headers);
-      if (res_temp.statusCode != 200)
-        throw Exception('http.get error: statusCode= ${res_temp.statusCode}');
-      //print(res.body);
-      final parsed = json.decode(res_temp.body).cast<String, dynamic>();
-      playlist_likes.add(parsed['followers']['total']);
-    }
-
-    //TODO : FIND NUMBER OF SONGS IN EACH PLAYLIST
-
-    for (int i = 1; i <= total; i++) {
-      var link = playlist_links[i - 1] + "/tracks";
-      var url_temp = Uri.parse(link);
-      var res_temp = await http.get(url_temp, headers: headers);
-      if (res_temp.statusCode != 200)
-        throw Exception('http.get error: statusCode= ${res_temp.statusCode}');
-      final parsed = json.decode(res_temp.body).cast<String, dynamic>();
-      playlist_song_count.add(parsed['total']);
-    }
-
-    // print(total);
-    // print(playlist_links);
-    // print(playlist_name);
-    // print(playlist_likes);
-    // print(playlist_song_count);
-
-    final pl_count = total;
-    final pl_links_api = playlist_links;
-    final pl_names = playlist_name;
-    final pl_likes = playlist_likes;
-    final pl_song_cnt = playlist_song_count;
-    final pl_image_link = playlist_pic_link;
-    print(
-      pl_count,
-    );
-    print(
-      pl_names,
-    );
-    print(
-      pl_likes,
-    );
-    print(
-      pl_song_cnt,
-    );
-    print(
-      pl_image_link,
-    );
-
-    var output = {
-      "Total Play Lists": pl_count,
-      "Play List Names": pl_names,
-      "Play List Likes": pl_likes,
-      "Total Song Count": pl_song_cnt,
-      "Play List Image Link": pl_image_link,
-    };
-    //print(pl_image_link);
-    return await output;
-  } catch (exc) {
-    ////// T H I S   P A R T   I S   S O   T H A T   I T   W I L L   S H O W   D A T A   E V E N   I F   T H E   A P I   E X P I R E S
-    ////// I F   Y O U   W A N T   T O   T E S T   T H E   A P I   F U N C T I O N A L I T Y   C O P Y   T H E   B A R E R   T O K E N   A N D   R E P L A C E
-    //////   T H E   O L D   B E A R E R   T O K E N   W I T H   A   N E W   O N E   I T   I N   L I N E   4 1   A F T E R   " B e a r e r "
-    print("Error: $exc");
-    var output = {
-      "Total Play Lists": 7,
-      "Play List Names": [
-        "Latest Telugu",
-        "City Back to Kasi",
-        "Bollywood Acoustic",
-        "REM sleep",
-        "Top 50 - India",
-        "Hi",
-        "Telugu Romance"
-      ],
-      "Play List Likes": [205129, 12178, 149110, 60092, 287940, 0, 78732],
-      "Total Song Count": [70, 60, 47, 44, 50, 11, 101],
-      "Play List Image Link": [
-        "https://i.scdn.co/image/ab67706f000000032cfa1cc4381a707accda25c6",
-        "https://i.scdn.co/image/ab67706f00000003b9ccf87dfaad821588fcf41c",
-        "https://i.scdn.co/image/ab67706f0000000373b6bd23c3a67f83b4acc521",
-        "https://i.scdn.co/image/ab67706f00000003ef48a5a9c020069725ca9ee2",
-        "https://charts-images.scdn.co/assets/locale_en/regional/daily/region_in_large.jpg",
-        "https://mosaic.scdn.co/640/ab67616d0000b27355d06097244512041e6877d6ab67616d0000b27363118748c712b6ac32c0feecab67616d0000b2736f3d477e1f31b354c5de3d56ab67616d0000b273c45f8ae0957ab4b8c45dd4fc",
-        "https://i.scdn.co/image/ab67706f00000003895e50c186f1ca4de90975fc"
-      ],
-    };
-    print("1");
-    return await output;
+    ;
+    //print('\n\n');
   }
+  print(playlist_pic_link);
+
+  //FOR COLLECTING LIKES OF " P L A Y   L I S T S"
+
+  for (int i = 1; i <= total; i++) {
+    var link = playlist_links[i - 1];
+    var url_temp = Uri.parse(link);
+    var res_temp = await http.get(url_temp, headers: headers);
+    if (res_temp.statusCode != 200)
+      throw Exception('http.get error: statusCode= ${res_temp.statusCode}');
+    //print(res.body);
+    final parsed = json.decode(res_temp.body).cast<String, dynamic>();
+    playlist_likes.add(parsed['followers']['total']);
+  }
+
+  //TODO : FIND NUMBER OF SONGS IN EACH PLAYLIST
+
+  for (int i = 1; i <= total; i++) {
+    var link = playlist_links[i - 1] + "/tracks";
+    var url_temp = Uri.parse(link);
+    var res_temp = await http.get(url_temp, headers: headers);
+    if (res_temp.statusCode != 200)
+      throw Exception('http.get error: statusCode= ${res_temp.statusCode}');
+    final parsed = json.decode(res_temp.body).cast<String, dynamic>();
+    playlist_song_count.add(parsed['total']);
+  }
+
+  // print(total);
+  // print(playlist_links);
+  // print(playlist_name);
+  // print(playlist_likes);
+  // print(playlist_song_count);
+
+  final pl_count = total;
+  final pl_links_api = playlist_links;
+  final pl_names = playlist_name;
+  final pl_likes = playlist_likes;
+  final pl_song_cnt = playlist_song_count;
+  final pl_image_link = playlist_pic_link;
+  print(
+    pl_count,
+  );
+  print(
+    pl_names,
+  );
+  print(
+    pl_likes,
+  );
+  print(
+    pl_song_cnt,
+  );
+  print(
+    pl_image_link,
+  );
+
+  var output = {
+    "Total Play Lists": pl_count,
+    "Play List Names": pl_names,
+    "Play List Likes": pl_likes,
+    "Total Song Count": pl_song_cnt,
+    "Play List Image Link": pl_image_link,
+  };
+  //print(pl_image_link);
+  return await output;
+  // } catch (exc) {
+  //   print("Error: $exc");
+  //   // var output = {
+  //   //   "Total Play Lists": 7,
+  //   //   "Play List Names": [
+  //   //     "Latest Telugu",
+  //   //     "City Back to Kasi",
+  //   //     "Bollywood Acoustic",
+  //   //     "REM sleep",
+  //   //     "Top 50 - India",
+  //   //     "Hi",
+  //   //     "Telugu Romance"
+  //   //   ],
+  //   //   "Play List Likes": [205129, 12178, 149110, 60092, 287940, 0, 78732],
+  //   //   "Total Song Count": [70, 60, 47, 44, 50, 11, 101],
+  //   //   "Play List Image Link": [
+  //   //     "https://i.scdn.co/image/ab67706f000000032cfa1cc4381a707accda25c6",
+  //   //     "https://i.scdn.co/image/ab67706f00000003b9ccf87dfaad821588fcf41c",
+  //   //     "https://i.scdn.co/image/ab67706f0000000373b6bd23c3a67f83b4acc521",
+  //   //     "https://i.scdn.co/image/ab67706f00000003ef48a5a9c020069725ca9ee2",
+  //   //     "https://charts-images.scdn.co/assets/locale_en/regional/daily/region_in_large.jpg",
+  //   //     "https://mosaic.scdn.co/640/ab67616d0000b27355d06097244512041e6877d6ab67616d0000b27363118748c712b6ac32c0feecab67616d0000b2736f3d477e1f31b354c5de3d56ab67616d0000b273c45f8ae0957ab4b8c45dd4fc",
+  //   //     "https://i.scdn.co/image/ab67706f00000003895e50c186f1ca4de90975fc"
+  //   //   ],
+  //   // };
+  //   print("1");
+  //   // return await output;
+  // }
 }
 
 // Future<String> getData() async {
