@@ -225,97 +225,89 @@ class _TaskDashboardState extends State<TaskSeven> {
               ),
             ),
           ),
-          body: Container(
-            child: Column(children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Center(
-                    child: Text(
-                  'Welcome! ' + userName,
-                  style: Theme.of(context).textTheme.headline5,
-                )),
-              ),
-              Column(
-                children: <Widget>[
-                  Card(
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Flexible(
-                              flex: 1,
-                              fit: FlexFit.loose,
-                              child: Text('INDEX')),
-                          Flexible(
-                              flex: 1, fit: FlexFit.tight, child: Text('NAME')),
-                          Flexible(
-                              flex: 1,
-                              fit: FlexFit.loose,
-                              child: Text('TRACKS')),
-                        ]),
-                  ),
-                  SizedBox(
-                    height: 280,
-                    child: Scrollbar(
-                      isAlwaysShown: true,
-                      controller: _listScrollController,
-                      child: ListView.builder(
-                        controller: _listScrollController,
-                        padding: const EdgeInsets.all(8.0),
-                        itemBuilder: (_, index) => _playlists[index],
-                        itemCount: _playlists.length,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [Text('Total ' + _playlists.length.toString())],
+          body: Column(children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Center(
+                  child: Text(
+                'Welcome! ' + userName,
+                style: Theme.of(context).textTheme.headline5,
+              )),
+            ),
+            Column(
+              children: <Widget>[
+                Card(
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        Flexible(
+                            flex: 1, fit: FlexFit.loose, child: Text('INDEX')),
+                        Flexible(
+                            flex: 1, fit: FlexFit.tight, child: Text('NAME')),
+                        Flexible(
+                            flex: 1, fit: FlexFit.loose, child: Text('TRACKS')),
+                      ]),
                 ),
-              ),
-              Row(children: [
-                const RotatedBox(
-                    quarterTurns: -1,
-                    child:
-                        Text('Tracks', style: TextStyle(color: Colors.black))),
-                Expanded(
+                SizedBox(
+                  height: 280,
                   child: Scrollbar(
                     isAlwaysShown: true,
-                    scrollbarOrientation: ScrollbarOrientation.bottom,
-                    controller: _graphScrollController,
-                    child: SingleChildScrollView(
-                      //padding: EdgeInsets.all(10.0),
-                      scrollDirection: Axis.horizontal,
-                      controller: _graphScrollController,
-                      child: SizedBox(
-                          width: _playlists.length * 20 > 200
-                              ? _playlists.length * 20
-                              : 200,
-                          height: 300,
-                          child:
-                              Expanded(child: PlayListChart(data: _playlists))),
+                    controller: _listScrollController,
+                    child: ListView.builder(
+                      controller: _listScrollController,
+                      padding: const EdgeInsets.all(8.0),
+                      itemBuilder: (_, index) => _playlists[index],
+                      itemCount: _playlists.length,
                     ),
                   ),
                 ),
-              ]),
-              const Center(
-                  child:
-                      Text('Playlist', style: TextStyle(color: Colors.black))),
-              ButtonBar(
-                children: <Widget>[
-                  TextButton(onPressed: clearData, child: const Text('CLEAR')),
-                  ElevatedButton(
-                      onPressed: getData,
-                      child: const Text(
-                        'REFRESH',
-                        style: TextStyle(color: Colors.white),
-                      ))
-                ],
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [Text('Total ' + _playlists.length.toString())],
+              ),
+            ),
+            Row(children: [
+              const RotatedBox(
+                  quarterTurns: -1,
+                  child: Text('Tracks', style: TextStyle(color: Colors.black))),
+              Expanded(
+                child: Scrollbar(
+                  isAlwaysShown: true,
+                  scrollbarOrientation: ScrollbarOrientation.bottom,
+                  controller: _graphScrollController,
+                  child: SingleChildScrollView(
+                    //padding: EdgeInsets.all(10.0),
+                    scrollDirection: Axis.horizontal,
+                    controller: _graphScrollController,
+                    child: SizedBox(
+                        width: _playlists.length * 20 > 200
+                            ? _playlists.length * 20
+                            : 200,
+                        height: 300,
+                        child:
+                            Expanded(child: PlayListChart(data: _playlists))),
+                  ),
+                ),
               ),
             ]),
-          )),
+            const Center(
+                child: Text('Playlist', style: TextStyle(color: Colors.black))),
+            ButtonBar(
+              children: <Widget>[
+                TextButton(onPressed: clearData, child: const Text('CLEAR')),
+                ElevatedButton(
+                    onPressed: getData,
+                    child: const Text(
+                      'REFRESH',
+                      style: TextStyle(color: Colors.white),
+                    ))
+              ],
+            ),
+          ])),
     );
   }
 }
