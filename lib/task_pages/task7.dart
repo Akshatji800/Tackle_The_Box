@@ -15,8 +15,7 @@ void _launchURL(_url) async {
 }
 
 const String _basePlaylistUrl =
-    'https://api.spotify.com/v1/users/smedjan/playlists?limit=50';
-//'https://api.spotify.com/v1/me/playlists?limit=50';
+    'https://api.spotify.com/v1/me/playlists?limit=50';
 const String _baseUserUrl = 'https://api.spotify.com/v1/me';
 
 late StreamSubscription _sub;
@@ -79,16 +78,10 @@ class _TaskDashboardState extends State<TaskSeven> {
 
   void getUserName() async {
     Uri _uri = Uri.parse(_baseUserUrl);
-    print(
-        '########################################## TOKEN ##################################');
-    print(_accessToken);
     final response = await http.get(_uri, headers: {
       'Authorization': 'Bearer ' + _accessToken,
       'Content-Type': 'application/json'
     });
-
-    print('Requesting URI');
-    print(_uri.toString());
 
     if (response.statusCode == 200) {
       Map<String, dynamic> myMap = json.decode(response.body);
@@ -99,16 +92,11 @@ class _TaskDashboardState extends State<TaskSeven> {
 
   Future<void> fetchPlaylist() async {
     Uri _uri = Uri.parse(_basePlaylistUrl);
-    print(
-        '########################################## TOKEN ##################################');
-    print(_accessToken);
+
     final response = await http.get(_uri, headers: {
       'Authorization': 'Bearer ' + _accessToken,
       'Content-Type': 'application/json'
     });
-
-    print('Requesting URI');
-    print(_uri.toString());
 
     if (response.statusCode == 200) {
       Map<String, dynamic> myMap = json.decode(response.body);
@@ -131,9 +119,6 @@ class _TaskDashboardState extends State<TaskSeven> {
           'Content-Type': 'application/json'
         });
 
-        print('Requesting URI');
-        print(_uri.toString());
-
         Map<String, dynamic> myMap = json.decode(response.body);
 
         for (var item in myMap['items']) {
@@ -147,14 +132,13 @@ class _TaskDashboardState extends State<TaskSeven> {
       }
       setState(() {});
     } else {
-      print(response.statusCode);
       throw Exception('Failed to load album');
     }
   }
 
   void getAccessToken() {
     var client_id = '9c9ca140425246ac88c2678fb27777db';
-    var redirect_uri = 'http://flutterbooksample.com';
+    var redirect_uri = 'http://tackletheboxtask7.com';
 
     var url = 'https://accounts.spotify.com/authorize';
     url += '?response_type=token';
@@ -167,11 +151,7 @@ class _TaskDashboardState extends State<TaskSeven> {
   }
 
   Future<void> initUniLinks() async {
-    // ... check initialUri
-
-    // Attach a listener to the stream
     _sub = uriLinkStream.listen((Uri? uri) {
-      // Use the uri and warn the user, if it is not correct
       final _uristr = uri.toString();
 
       const start = "access_token=";
@@ -181,19 +161,11 @@ class _TaskDashboardState extends State<TaskSeven> {
       final endIndex = _uristr.indexOf(end, startIndex + start.length);
 
       _accessToken = _uristr.substring(startIndex + start.length, endIndex);
-      print(
-          '################################################# URI RECEIVED #########################################################################');
-      print(uri.toString());
-      print(_accessToken);
 
       clearData();
       getData();
       getUserName();
-    }, onError: (err) {
-      // Handle exception by warning the user their action did not succeed
-    });
-
-    // NOTE: Don't forget to call _sub.cancel() in dispose()
+    }, onError: (err) {});
   }
 
   @override
@@ -347,15 +319,6 @@ ThemeData _buildSpotifyTheme() {
     textSelectionTheme: const TextSelectionThemeData(
       selectionColor: Color(0xff1db954),
     ),
-    /*inputDecorationTheme: const InputDecorationTheme(
-      focusedBorder: CutCornersBorder(
-        borderSide: BorderSide(
-          width: 2.0,
-          color: Color(0xff1ed760),
-        ),
-      ),
-      border: CutCornersBorder(),
-    ),*/
   );
 }
 
