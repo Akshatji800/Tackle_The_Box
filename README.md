@@ -21,6 +21,9 @@ Show your creativity and feel free to make a creative and good looking UI. We sh
 The best looking UI will get a sponsored trip to mars from Sujith (in collab with SpaceX). :alien:
 
 --------------------------------------------------------------------------------------------------------------
+## TO ADD : 
+- Link the API which I generated using Postman for refreshing token
+- Request API for a session on the Line Graph implemented
 
 # Final Output
 
