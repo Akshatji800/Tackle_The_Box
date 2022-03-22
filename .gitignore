@@ -30,7 +30,10 @@
 .pub-cache/
 .pub/
 /build/
-
+assets/venv
+assets/.cache
+assets/cread.py
+assets/file copy.json
 # Web related
 lib/generated_plugin_registrant.dart
 
