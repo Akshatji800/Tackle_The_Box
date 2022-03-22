@@ -14,33 +14,81 @@ void _launchURL(_url) async {
   if (!await launch(_url)) throw 'Could not launch $_url';
 }
 
-const String _basePlaylistUrl =
+buildLoading(BuildContext context) {
+  return showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return const Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+          ),
+        );
+      });
+}
+
+const String _baseUserPlaylistUrl =
     'https://api.spotify.com/v1/me/playlists?limit=50';
 const String _baseUserUrl = 'https://api.spotify.com/v1/me';
+const String _basePlaylistUrl = 'https://api.spotify.com/v1/playlists/';
 
 late StreamSubscription _sub;
 
 class PlayList extends StatelessWidget {
   const PlayList(
-      {Key? key, required this.name, required this.tracks, required this.index})
+      {Key? key,
+      required this.name,
+      required this.id,
+      required this.tracks,
+      required this.index,
+      required this.likes})
       : super(key: key);
 
   final String name;
+  final String id;
+  final int likes;
   final int tracks;
   final int index;
 
-  factory PlayList.fromJson(Map<String, dynamic> json, int index) {
-    return PlayList(name: json['name'], tracks: json['tracks'], index: index);
+  factory PlayList.fromJson(Map<String, dynamic> json, int index, int likes) {
+    return PlayList(
+      name: json['name'],
+      id: json['id'],
+      tracks: json['tracks'],
+      index: index,
+      likes: likes,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Flexible(flex: 1, fit: FlexFit.loose, child: Text(index.toString())),
-        Flexible(flex: 1, fit: FlexFit.tight, child: Text(name)),
-        Flexible(flex: 1, fit: FlexFit.loose, child: Text(tracks.toString())),
-      ]),
+    return SizedBox(
+      height: 50,
+      child: Card(
+        elevation: 2,
+        child:
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          Flexible(
+              flex: 1,
+              fit: FlexFit.loose,
+              child: Container(
+                  width: 30, child: Center(child: Text(index.toString())))),
+          Flexible(
+              flex: 2,
+              fit: FlexFit.tight,
+              child: Container(width: 120, child: Text(name))),
+          Flexible(
+              flex: 1,
+              fit: FlexFit.loose,
+              child: Container(
+                  width: 80, child: Center(child: Text(tracks.toString())))),
+          Flexible(
+              flex: 1,
+              fit: FlexFit.loose,
+              child: Container(
+                  width: 70, child: Center(child: Text(likes.toString())))),
+        ]),
+      ),
     );
   }
 }
@@ -56,14 +104,21 @@ class _TaskDashboardState extends State<TaskSeven> {
   var _accessToken;
   List<PlayList> _playlists = [];
   String userName = '';
-  final _graphScrollController = ScrollController();
+  final _tracksGraphScrollController = ScrollController();
+  final _likesGraphScrollController = ScrollController();
   final _listScrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     getAccessToken();
-    _playlists.add(const PlayList(name: 'No Data', tracks: 0, index: 0));
+    _playlists.add(const PlayList(
+      name: 'No Data',
+      id: '',
+      tracks: 0,
+      index: 0,
+      likes: 0,
+    ));
   }
 
   void clearData() {
@@ -72,6 +127,7 @@ class _TaskDashboardState extends State<TaskSeven> {
   }
 
   void getData() {
+    _playlists.clear();
     fetchPlaylist();
     setState(() {});
   }
@@ -91,7 +147,7 @@ class _TaskDashboardState extends State<TaskSeven> {
   }
 
   Future<void> fetchPlaylist() async {
-    Uri _uri = Uri.parse(_basePlaylistUrl);
+    Uri _uri = Uri.parse(_baseUserPlaylistUrl);
 
     final response = await http.get(_uri, headers: {
       'Authorization': 'Bearer ' + _accessToken,
@@ -99,6 +155,7 @@ class _TaskDashboardState extends State<TaskSeven> {
     });
 
     if (response.statusCode == 200) {
+      buildLoading(context);
       Map<String, dynamic> myMap = json.decode(response.body);
       final int _total = myMap['total'];
       int _offset = 0;
@@ -106,14 +163,17 @@ class _TaskDashboardState extends State<TaskSeven> {
         var trk = item['tracks']['total'];
         _playlists.add(PlayList(
           name: item['name'],
+          id: item['id'],
           tracks: trk,
-          index: _playlists.length,
+          index: _playlists.length + 1,
+          likes: await fetchPlaylistLikes(item['id']),
         ));
       }
 
       if (_playlists.length < _total) {
         _offset = _playlists.length;
-        _uri = Uri.parse(_basePlaylistUrl + ('&offset=' + _offset.toString()));
+        _uri =
+            Uri.parse(_baseUserPlaylistUrl + ('&offset=' + _offset.toString()));
         final response = await http.get(_uri, headers: {
           'Authorization': 'Bearer ' + _accessToken,
           'Content-Type': 'application/json'
@@ -125,15 +185,31 @@ class _TaskDashboardState extends State<TaskSeven> {
           var trk = item['tracks']['total'];
           _playlists.add(PlayList(
             name: item['name'],
+            id: item['id'],
             tracks: trk,
             index: (_playlists.length + 1),
+            likes: await fetchPlaylistLikes(item['id']),
           ));
         }
       }
+      Navigator.of(context).pop();
       setState(() {});
     } else {
       throw Exception('Failed to load album');
     }
+  }
+
+  Future<int> fetchPlaylistLikes(String id) async {
+    Uri _uri = Uri.parse(_basePlaylistUrl + id);
+
+    final response = await http.get(_uri, headers: {
+      'Authorization': 'Bearer ' + _accessToken,
+      'Content-Type': 'application/json'
+    });
+
+    Map<String, dynamic> myMap = json.decode(response.body);
+
+    return myMap['followers']['total'];
   }
 
   void getAccessToken() {
@@ -197,97 +273,180 @@ class _TaskDashboardState extends State<TaskSeven> {
               ),
             ),
           ),
-          body: Column(children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Center(
-                  child: Text(
-                'Welcome! ' + userName,
-                style: Theme.of(context).textTheme.headline5,
-              )),
-            ),
-            Column(
-              children: <Widget>[
-                Card(
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Flexible(
-                            flex: 1, fit: FlexFit.loose, child: Text('INDEX')),
-                        Flexible(
-                            flex: 1, fit: FlexFit.tight, child: Text('NAME')),
-                        Flexible(
-                            flex: 1, fit: FlexFit.loose, child: Text('TRACKS')),
-                      ]),
-                ),
-                SizedBox(
-                  height: 280,
-                  child: Scrollbar(
-                    isAlwaysShown: true,
-                    controller: _listScrollController,
-                    child: ListView.builder(
-                      controller: _listScrollController,
-                      padding: const EdgeInsets.all(8.0),
-                      itemBuilder: (_, index) => _playlists[index],
-                      itemCount: _playlists.length,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [Text('Total ' + _playlists.length.toString())],
-              ),
-            ),
-            Row(children: [
-              const RotatedBox(
-                  quarterTurns: -1,
-                  child: Text('Tracks', style: TextStyle(color: Colors.black))),
+          body: Column(
+            children: [
               Expanded(
-                child: Scrollbar(
-                  isAlwaysShown: true,
-                  scrollbarOrientation: ScrollbarOrientation.bottom,
-                  controller: _graphScrollController,
-                  child: SingleChildScrollView(
-                    //padding: EdgeInsets.all(10.0),
-                    scrollDirection: Axis.horizontal,
-                    controller: _graphScrollController,
-                    child: SizedBox(
-                        width: _playlists.length * 20 > 200
-                            ? _playlists.length * 20
-                            : 200,
-                        height: 300,
-                        child:
-                            Expanded(child: PlayListChart(data: _playlists))),
-                  ),
+                child: SingleChildScrollView(
+                  child: Column(children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Center(
+                          child: Text(
+                        'Welcome! ' + userName,
+                        style: Theme.of(context).textTheme.headline5,
+                      )),
+                    ),
+                    Column(
+                      children: <Widget>[
+                        SizedBox(
+                          height: 60,
+                          child: Card(
+                            elevation: 3,
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Flexible(
+                                      flex: 1,
+                                      fit: FlexFit.loose,
+                                      child: Container(
+                                          width: 30,
+                                          child: Center(child: Text('#')))),
+                                  Flexible(
+                                      flex: 2,
+                                      fit: FlexFit.tight,
+                                      child: Container(
+                                          width: 120, child: Text('NAME'))),
+                                  Flexible(
+                                      flex: 1,
+                                      fit: FlexFit.loose,
+                                      child: Container(
+                                          width: 80, child: Text('TRACKS'))),
+                                  Flexible(
+                                      flex: 1,
+                                      fit: FlexFit.loose,
+                                      child: Container(
+                                          width: 70,
+                                          child: Center(child: Text('LIKES')))),
+                                ]),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 280,
+                          child: Scrollbar(
+                            isAlwaysShown: true,
+                            controller: _listScrollController,
+                            child: ListView.builder(
+                              controller: _listScrollController,
+                              padding: const EdgeInsets.all(8.0),
+                              itemBuilder: (_, index) => _playlists[index],
+                              itemCount: _playlists.length,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 30),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            'Total Playlists ' + _playlists.length.toString(),
+                            style: TextStyle(fontSize: 20),
+                          )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 100,
+                      child: Center(
+                          child: Text('Graphs',
+                              style: TextStyle(
+                                  fontSize: 25, color: Colors.black))),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Row(children: [
+                        const RotatedBox(
+                            quarterTurns: -1,
+                            child: Text('Tracks',
+                                style: TextStyle(color: Colors.black))),
+                        Expanded(
+                          child: Scrollbar(
+                            isAlwaysShown: true,
+                            scrollbarOrientation: ScrollbarOrientation.bottom,
+                            controller: _tracksGraphScrollController,
+                            child: SingleChildScrollView(
+                              //padding: EdgeInsets.all(10.0),
+                              scrollDirection: Axis.horizontal,
+                              controller: _tracksGraphScrollController,
+                              child: SizedBox(
+                                  width: _playlists.length * 30 > 600
+                                      ? _playlists.length * 30
+                                      : 600,
+                                  height: 400,
+                                  child: Expanded(
+                                      child: PlayListTracksChart(
+                                          data: _playlists))),
+                            ),
+                          ),
+                        ),
+                      ]),
+                    ),
+                    const Center(
+                        child: Text('Playlist',
+                            style: TextStyle(color: Colors.black))),
+                    Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Row(children: [
+                        const RotatedBox(
+                            quarterTurns: -1,
+                            child: Text('Likes',
+                                style: TextStyle(color: Colors.black))),
+                        Expanded(
+                          child: Scrollbar(
+                            isAlwaysShown: true,
+                            scrollbarOrientation: ScrollbarOrientation.bottom,
+                            controller: _likesGraphScrollController,
+                            child: SingleChildScrollView(
+                              //padding: EdgeInsets.all(10.0),
+                              scrollDirection: Axis.horizontal,
+                              controller: _likesGraphScrollController,
+                              child: SizedBox(
+                                  width: _playlists.length * 30 > 600
+                                      ? _playlists.length * 30
+                                      : 600,
+                                  height: 400,
+                                  child: Expanded(
+                                      child:
+                                          PlayListLikeChart(data: _playlists))),
+                            ),
+                          ),
+                        ),
+                      ]),
+                    ),
+                    const Center(
+                        child: Text('Playlist',
+                            style: TextStyle(color: Colors.black))),
+                    ButtonBar(
+                      children: <Widget>[
+                        TextButton(
+                            onPressed: clearData, child: const Text('CLEAR')),
+                        ElevatedButton(
+                            onPressed: getData,
+                            child: const Text(
+                              'REFRESH',
+                              style: TextStyle(color: Colors.white),
+                            ))
+                      ],
+                    ),
+                  ]),
                 ),
-              ),
-            ]),
-            const Center(
-                child: Text('Playlist', style: TextStyle(color: Colors.black))),
-            ButtonBar(
-              children: <Widget>[
-                TextButton(onPressed: clearData, child: const Text('CLEAR')),
-                ElevatedButton(
-                    onPressed: getData,
-                    child: const Text(
-                      'REFRESH',
-                      style: TextStyle(color: Colors.white),
-                    ))
-              ],
-            ),
-          ])),
+              )
+            ],
+          )),
     );
   }
 }
 
-class PlayListChart extends StatelessWidget {
+class PlayListTracksChart extends StatelessWidget {
   final List<PlayList> data;
 
-  PlayListChart({required this.data});
+  PlayListTracksChart({required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -297,6 +456,28 @@ class PlayListChart extends StatelessWidget {
           data: data,
           domainFn: (PlayList series, _) => series.index.toString(),
           measureFn: (PlayList series, _) => series.tracks),
+    ];
+
+    return charts.BarChart(
+      series,
+      animate: true,
+    );
+  }
+}
+
+class PlayListLikeChart extends StatelessWidget {
+  final List<PlayList> data;
+
+  PlayListLikeChart({required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    List<charts.Series<PlayList, String>> series = [
+      charts.Series(
+          id: "tracks",
+          data: data,
+          domainFn: (PlayList series, _) => series.index.toString(),
+          measureFn: (PlayList series, _) => series.likes),
     ];
 
     return charts.BarChart(
@@ -335,7 +516,7 @@ TextTheme _buildSpotifyTextTheme(TextTheme base) {
           fontWeight: FontWeight.w400,
           fontSize: 14.0,
         ),
-        bodyText1: base.bodyText1!.copyWith(
+        bodyText2: base.bodyText2!.copyWith(
           fontWeight: FontWeight.w500,
           fontSize: 16.0,
         ),
