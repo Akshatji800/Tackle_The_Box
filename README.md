@@ -19,3 +19,9 @@ Show your creativity and feel free to make a creative and good looking UI. We sh
 ## 📋 Additional Information
 
 The best looking UI will get a sponsored trip to mars from Sujith (in collab with SpaceX). :alien:
+
+--------------------------------------------------------------------------------------------------------------
+
+# Final Output
+
+![amfoss task13](https://user-images.githubusercontent.com/56226566/159538837-3b5eac4d-6e1e-4df4-ac4a-69a44df952e6.gif)
