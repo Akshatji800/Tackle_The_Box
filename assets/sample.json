@@ -1,0 +1,164 @@
+{
+  "href": "https://api.spotify.com/v1/users/uagrefokex6xvf12towcucu3h/playlists?offset=0&limit=20",
+  "items": [
+    {
+      "collaborative": false,
+      "description": "",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/679Kapz5sJ2LpB7OY0NVVd"
+      },
+      "href": "https://api.spotify.com/v1/playlists/679Kapz5sJ2LpB7OY0NVVd",
+      "id": "679Kapz5sJ2LpB7OY0NVVd",
+      "images": [
+        {
+          "height": null,
+          "url": "https://i.scdn.co/image/ab67706c0000bebb620653c3600b07dca578399d",
+          "width": null
+        }
+      ],
+      "name": "Yandhi",
+      "owner": {
+        "display_name": "Manikandan M",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/uagrefokex6xvf12towcucu3h"
+        },
+        "href": "https://api.spotify.com/v1/users/uagrefokex6xvf12towcucu3h",
+        "id": "uagrefokex6xvf12towcucu3h",
+        "type": "user",
+        "uri": "spotify:user:uagrefokex6xvf12towcucu3h"
+      },
+      "primary_color": null,
+      "public": true,
+      "snapshot_id": "MTgsNzdjZjllYmIzZDE4OGQ4MTM3ZDNiMjE5ZDNhMTdlNzc0NWFhZGMwZg==",
+      "tracks": {
+        "href": "https://api.spotify.com/v1/playlists/679Kapz5sJ2LpB7OY0NVVd/tracks",
+        "total": 16
+      },
+      "type": "playlist",
+      "uri": "spotify:playlist:679Kapz5sJ2LpB7OY0NVVd"
+    },
+    {
+      "collaborative": false,
+      "description": "Spotify Wrapped presents the songs that you loved most this year.",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/37i9dQZF1EUMDoJuT8yJsl"
+      },
+      "href": "https://api.spotify.com/v1/playlists/37i9dQZF1EUMDoJuT8yJsl",
+      "id": "37i9dQZF1EUMDoJuT8yJsl",
+      "images": [
+        {
+          "height": null,
+          "url": "https://lineup-images.scdn.co/wrapped-2021-top100_LARGE-en.jpg",
+          "width": null
+        }
+      ],
+      "name": "Your Top Songs 2021",
+      "owner": {
+        "display_name": "Spotify",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/spotify"
+        },
+        "href": "https://api.spotify.com/v1/users/spotify",
+        "id": "spotify",
+        "type": "user",
+        "uri": "spotify:user:spotify"
+      },
+      "primary_color": null,
+      "public": false,
+      "snapshot_id": "MCwwMDAwMDAwMGJmMWUyNWZiMTgwMWIwN2U3YmZmZDFjNmNhMzY0MzUy",
+      "tracks": {
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1EUMDoJuT8yJsl/tracks",
+        "total": 100
+      },
+      "type": "playlist",
+      "uri": "spotify:playlist:37i9dQZF1EUMDoJuT8yJsl"
+    },
+    {
+      "collaborative": false,
+      "description": "",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/3D9praoduSqvUmNAq4FaLa"
+      },
+      "href": "https://api.spotify.com/v1/playlists/3D9praoduSqvUmNAq4FaLa",
+      "id": "3D9praoduSqvUmNAq4FaLa",
+      "images": [
+        {
+          "height": null,
+          "url": "https://i.scdn.co/image/ab67706c0000bebb0ce52f8cb722799e8a201bae",
+          "width": null
+        }
+      ],
+      "name": "bangers",
+      "owner": {
+        "display_name": "Manikandan M",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/uagrefokex6xvf12towcucu3h"
+        },
+        "href": "https://api.spotify.com/v1/users/uagrefokex6xvf12towcucu3h",
+        "id": "uagrefokex6xvf12towcucu3h",
+        "type": "user",
+        "uri": "spotify:user:uagrefokex6xvf12towcucu3h"
+      },
+      "primary_color": null,
+      "public": true,
+      "snapshot_id": "MjIwLGQxYTg1Y2Q2N2YxZTBlNmZlODc4Y2U4MGU4NjRlZDVkMDlkOTI3N2Q=",
+      "tracks": {
+        "href": "https://api.spotify.com/v1/playlists/3D9praoduSqvUmNAq4FaLa/tracks",
+        "total": 195
+      },
+      "type": "playlist",
+      "uri": "spotify:playlist:3D9praoduSqvUmNAq4FaLa"
+    },
+    {
+      "collaborative": false,
+      "description": "",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/0WG7lipOTHWzRJ2dVl56qt"
+      },
+      "href": "https://api.spotify.com/v1/playlists/0WG7lipOTHWzRJ2dVl56qt",
+      "id": "0WG7lipOTHWzRJ2dVl56qt",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://mosaic.scdn.co/640/ab67616d0000b2731ae71e77aef7c34227027daaab67616d0000b2732c20807b7f30e2e04a910b4eab67616d0000b2733e0698e4ae5ffb82a005aeebab67616d0000b273891f0552bed344dc2bfe322f",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://mosaic.scdn.co/300/ab67616d0000b2731ae71e77aef7c34227027daaab67616d0000b2732c20807b7f30e2e04a910b4eab67616d0000b2733e0698e4ae5ffb82a005aeebab67616d0000b273891f0552bed344dc2bfe322f",
+          "width": 300
+        },
+        {
+          "height": 60,
+          "url": "https://mosaic.scdn.co/60/ab67616d0000b2731ae71e77aef7c34227027daaab67616d0000b2732c20807b7f30e2e04a910b4eab67616d0000b2733e0698e4ae5ffb82a005aeebab67616d0000b273891f0552bed344dc2bfe322f",
+          "width": 60
+        }
+      ],
+      "name": "COZY VIBES",
+      "owner": {
+        "display_name": "Chris Irvine",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/12144268900"
+        },
+        "href": "https://api.spotify.com/v1/users/12144268900",
+        "id": "12144268900",
+        "type": "user",
+        "uri": "spotify:user:12144268900"
+      },
+      "primary_color": null,
+      "public": false,
+      "snapshot_id": "MTQ4LDZjM2E2MWUyZDI3ZTlkNGNkOGNlZTRhZWIwMTViYWNlYTM4ZmUyY2Y=",
+      "tracks": {
+        "href": "https://api.spotify.com/v1/playlists/0WG7lipOTHWzRJ2dVl56qt/tracks",
+        "total": 143
+      },
+      "type": "playlist",
+      "uri": "spotify:playlist:0WG7lipOTHWzRJ2dVl56qt"
+    }
+  ],
+  "limit": 20,
+  "next": null,
+  "offset": 0,
+  "previous": null,
+  "total": 4
+}
