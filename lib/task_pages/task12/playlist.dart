@@ -106,11 +106,11 @@ class Item {
         "id": id,
         "images": List<dynamic>.from(images!.map((x) => x.toJson())),
         "name": name,
-        "owner": owner?.toJson(),
+        "owner": owner.toJson(),
         "primary_color": primaryColor,
         "public": public,
         "snapshot_id": snapshotId,
-        "tracks": tracks?.toJson(),
+        "tracks": tracks.toJson(),
         "type": type,
         "uri": uri,
       };

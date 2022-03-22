@@ -61,73 +61,91 @@ class _TaskDashboardState extends State<TaskTwelve> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Task-12',
-          style: TextStyle(color: Colors.white),
-        ),
-        backgroundColor: Colors.yellow.shade800,
-        elevation: 1,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-        ),
-      ),
-      body: Visibility(
-        visible: isLoaded,
-        child: ListView.builder(
-          itemCount: playlists?.items.length,
-          itemBuilder: (context, index) {
-            return Container(
-                child: Row(
-              children: [
-                Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: Colors.grey[300]),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        playlists!.items[index].name,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        "Owner: " +
-                            playlists!.items[index].owner.displayName
-                                .toString(),
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      Text(
-                        "Total Songs: " +
-                            playlists!.items[index].tracks.total.toString(),
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ),
-                ),
+    return MaterialApp(
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: const TabBar(
+              tabs: [
+                Tab(icon: Icon(Icons.music_note)),
+                Tab(icon: Icon(Icons.bar_chart_rounded)),
               ],
-            ));
-          },
-        ),
-        replacement: const Center(
-          child: CircularProgressIndicator(),
+            ),
+            title: const Text(
+              'Task-12',
+              style: TextStyle(color: Colors.white),
+            ),
+            backgroundColor: const Color.fromRGBO(30, 215, 96, 1),
+            shadowColor: Colors.black,
+            elevation: 1,
+            leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          body: TabBarView(
+            children: [
+              Visibility(
+                visible: isLoaded,
+                child: ListView.builder(
+                  itemCount: playlists?.items.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                        child: Row(
+                      children: [
+                        Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: Colors.grey[300]),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                playlists!.items[index].name,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                "Owner: " +
+                                    playlists!.items[index].owner.displayName
+                                        .toString(),
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Text(
+                                "Total Songs: " +
+                                    playlists!.items[index].tracks.total
+                                        .toString(),
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ));
+                  },
+                ),
+                replacement: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+              const Icon(Icons.bar_chart_rounded),
+            ],
+          ),
         ),
       ),
     );
