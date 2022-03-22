@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:url_launcher/url_launcher.dart';
+import 'dart:async';
+import 'package:url_launcher/link.dart';
 
 // @override
 // Widget build(BuildContext context) {
@@ -80,6 +83,7 @@ Future<Map> getData() async {
   List<int> playlist_likes = [];
   List<int> playlist_song_count = [];
   List<String> playlist_pic_link = [];
+  List<String> playlist_spotify_link = [];
 
   //FOR COLLECTING LINKS AND NAMES OF " P L A Y   L I S T S"
 
@@ -87,6 +91,8 @@ Future<Map> getData() async {
     //print();
     playlist_links.add(parsed['items'][i - 1]['href']);
     playlist_name.add(parsed['items'][i - 1]['name']);
+    playlist_spotify_link
+        .add(parsed['items'][i - 1]['external_urls']['spotify']);
     try {
       playlist_pic_link.add(parsed['items'][i - 1]['images'][0]['url']);
     } catch (s) {
@@ -135,6 +141,8 @@ Future<Map> getData() async {
   final pl_likes = playlist_likes;
   final pl_song_cnt = playlist_song_count;
   final pl_image_link = playlist_pic_link;
+  final pl_links_spotify = playlist_spotify_link;
+  print(pl_links_spotify);
   print(
     pl_count,
   );
@@ -157,6 +165,7 @@ Future<Map> getData() async {
     "Play List Likes": pl_likes,
     "Total Song Count": pl_song_cnt,
     "Play List Image Link": pl_image_link,
+    "Play List Link": pl_links_spotify,
   };
   //print(pl_image_link);
   return await output;
@@ -220,6 +229,8 @@ class TaskSixteen extends StatefulWidget {
 
 class _TaskDashboardState extends State<TaskSixteen> {
   Map? dataFuture;
+  Future<void>? _launched;
+
   final List<BarChartModel> data = [
     BarChartModel(
         year: "2014",
@@ -239,6 +250,16 @@ class _TaskDashboardState extends State<TaskSixteen> {
         }));
   }
 
+  Future<void> _launchInBrowser(String url) async {
+    if (!await launch(
+      url,
+      forceSafariVC: false,
+      forceWebView: false,
+      headers: <String, String>{'my_header_key': 'my_header_value'},
+    )) {
+      throw 'Could not launch $url';
+    }
+  }
   // @override
   // void initState() {
   //   super.initState();
@@ -258,6 +279,8 @@ class _TaskDashboardState extends State<TaskSixteen> {
     final pl_likes = dataFuture?["Play List Likes"];
     final pl_song_cnt = dataFuture?["Total Song Count"];
     final pl_picture = dataFuture?["Play List Image Link"];
+    final pl_link = dataFuture?["Play List Link"];
+
     print(dataFuture);
     while (pl_count == null) {
       return Scaffold(
@@ -368,86 +391,102 @@ class _TaskDashboardState extends State<TaskSixteen> {
                         const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                     children: [
                       for (int index = 1; index <= pl_count; index++)
-                        Padding(
-                          padding: const EdgeInsets.all(0.0),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(1.0),
-                                // child: ListTile(
-                                //   leading: ExcludeSemantics(
-                                //     child: Image.network(pl_picture[index - 1]),
-                                //   ),
-                                //   title: Text(
-                                //     pl_names[index - 1],
-                                //   ),
-                                // ),
-                                //child: Image.network(pl_picture[index - 1]),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 5.0),
-                                child: Container(
-                                  height: 130.0,
-                                  width: 130.0,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image:
-                                          NetworkImage(pl_picture[index - 1]),
-                                      fit: BoxFit.fill,
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Padding(
+                            padding: const EdgeInsets.all(0.0),
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(1.0),
+                                  // child: ListTile(
+                                  //   leading: ExcludeSemantics(
+                                  //     child: Image.network(pl_picture[index - 1]),
+                                  //   ),
+                                  //   title: Text(
+                                  //     pl_names[index - 1],
+                                  //   ),
+                                  // ),
+                                  //child: Image.network(pl_picture[index - 1]),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5.0),
+                                  child: Container(
+                                    height: 130.0,
+                                    width: 130.0,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image:
+                                            NetworkImage(pl_picture[index - 1]),
+                                        fit: BoxFit.fill,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              //child: Image(image: NetworkImage(pl_picture[index - 1]))),
-                              Container(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(14.0),
-                                  child: Expanded(
-                                    child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          // Container(
-                                          //   height: 170.0,
-                                          //   width: 170.0,
-                                          //   child: Text(
-                                          //     pl_names[index - 1],
-                                          //   ),
-                                          // )
-                                          Container(
-                                            child: Text(
-                                              "${pl_names[index - 1]}",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 18),
-                                              overflow: TextOverflow.ellipsis,
+                                //child: Image(image: NetworkImage(pl_picture[index - 1]))),
+                                Container(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(14.0),
+                                    child: SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            // Container(
+                                            //   height: 170.0,
+                                            //   width: 170.0,
+                                            //   child: Text(
+                                            //     pl_names[index - 1],
+                                            //   ),
+                                            // )
+                                            Container(
+                                              child: Text(
+                                                "${pl_names[index - 1]}",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18),
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
                                             ),
-                                          ),
 
-                                          SizedBox(
-                                            width: 80,
-                                          ),
-                                          Container(
-                                            child: Flexible(
-                                              child: Text(
-                                                "Likes : ${pl_likes[index - 1]}",
-                                                overflow: TextOverflow.ellipsis,
+                                            SizedBox(
+                                              width: 80,
+                                            ),
+                                            Container(
+                                              child: Flexible(
+                                                child: Text(
+                                                  "Likes : ${pl_likes[index - 1]}",
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          Container(
-                                            child: Flexible(
-                                              child: Text(
-                                                "Number of Songs : ${pl_song_cnt[index - 1]}",
-                                                overflow: TextOverflow.ellipsis,
+                                            Container(
+                                              child: Flexible(
+                                                child: Text(
+                                                  "Number of Songs : ${pl_song_cnt[index - 1]}",
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ]),
+                                            ElevatedButton(
+                                              onPressed: () => setState(() {
+                                                _launched = _launchInBrowser(
+                                                    '${pl_link[index - 1]}');
+                                              }),
+                                              child:
+                                                  const Text('Open in Browser'),
+                                            ),
+                                          ]),
+                                    ),
                                   ),
-                                ),
-                              )
-                            ],
+                                )
+                              ],
+                            ),
                           ),
                         ),
                     ],
