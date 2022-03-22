@@ -104,7 +104,7 @@ class _TaskDashboardState extends State<TaskTwentyTwo> {
 
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(12.0),
+                        padding: const EdgeInsets.only(top:12.0,left: 12.0,right:12.0),
                         child: SizedBox(
                           height: 350,
                           width: 350,
@@ -116,8 +116,10 @@ class _TaskDashboardState extends State<TaskTwentyTwo> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children:[
                                 SfCircularChart(
+                                  title: ChartTitle(text: "No. of Likes",
+                                  textStyle: TextStyle(fontSize: 12)),
                                     legend: Legend(isVisible: true,
-                                    width: "30%",
+                                    width: "10%",
                                     position: LegendPosition.bottom,
                                     isResponsive: false,
                                     overflowMode: LegendItemOverflowMode.wrap),
@@ -155,10 +157,6 @@ class _TaskDashboardState extends State<TaskTwentyTwo> {
                                 bottomLeft: Radius.circular(10.0),
                                 bottomRight: Radius.circular(10.0),
                               ),
-                              //BorderRadius.only
-                              /************************************/
-                              /* The BoxShadow widget  is here */
-                              /************************************/
                               boxShadow: [
                                 BoxShadow(
                               color: Colors.black12,
@@ -181,6 +179,83 @@ class _TaskDashboardState extends State<TaskTwentyTwo> {
                           ), //Container
                         ), //SizedBox
                       ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: SizedBox(
+                          height: 350,
+                          width: 350,
+                          child: Center(
+                            child:Container(
+
+                              child:
+                              Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children:[
+                                    SfCartesianChart(
+                                      title: ChartTitle(
+                                          text:"No. of Tracks",
+                                      textStyle: TextStyle(fontSize: 12)),
+                                        primaryXAxis: CategoryAxis(),
+                                        legend: Legend(isVisible: false,
+                                            width: "30%",
+                                            position: LegendPosition.bottom,
+                                            isResponsive: true,
+                                            overflowMode: LegendItemOverflowMode.wrap),
+                                        series: <ChartSeries>[
+                                          // Renders radial bar chart
+                                          LineSeries<Tag, String>(
+                                            enableTooltip: true,
+                                            animationDuration: 2.5,
+                                            animationDelay: 2.5,
+                                            dataSource: tagObjs,
+                                            xValueMapper: (Tag data, _) => data.name,
+                                            yValueMapper: (Tag data, _) => data.track,
+                                            dataLabelSettings: DataLabelSettings(
+                                              // Renders the data label
+                                                isVisible: true
+                                            ),
+                                            legendIconType: LegendIconType.seriesType,
+                                          )
+                                        ]
+                                    ),
+                                  ]),
+                              decoration: BoxDecoration(
+
+                                //DecorationImage
+                                border: Border.all(
+                                    color: Colors.white,
+                                    width: 3.0,
+                                    style: BorderStyle.solid), //Border.all
+
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(10.0),
+                                  topRight: Radius.circular(10.0),
+                                  bottomLeft: Radius.circular(10.0),
+                                  bottomRight: Radius.circular(10.0),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black12,
+                                    offset: const Offset(
+                                      5.0,
+                                      5.0,
+                                    ),
+                                    blurRadius: 50.0,
+                                    spreadRadius: 10.0,
+                                  ),
+                                  //BoxShadow
+                                  BoxShadow(
+                                    color: Colors.white,
+                                    offset: const Offset(0.0, 0.0),
+                                    blurRadius: 0.0,
+                                    spreadRadius: 0.0,
+                                  ), //BoxShadow
+                                ],
+                              ), //BoxDecoration
+                            ), //Container
+                          ), //SizedBox
+                        ),
                       ),
                       //Padding
             Expanded(
@@ -205,7 +280,17 @@ class _TaskDashboardState extends State<TaskTwentyTwo> {
                                         foregroundImage: NetworkImage(_items[index]["image"]),
                                         ),
                                       title: Text(_items[index]["Name"]),
-                                      subtitle: Text(_items[index]["Artist"]),
+                                      subtitle: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                          children:[Padding(padding: EdgeInsets.only(top:0),
+                                        child:Text(_items[index]["Artist"]),),
+                                            Padding(padding: EdgeInsets.only(top:0),
+                                              child:Row(
+                                                  children:[
+                                              Padding(padding: EdgeInsets.only(top:0),
+                                                    child:Text("Total Tracks   ")
+                                              ),Padding(padding: EdgeInsets.only(top:0),
+                                      child:Text(_items[index]["Tracks"].toString()))]),)]),
                                       trailing: Column(
                                         children:[Padding(padding: EdgeInsets.only(top:5),
                                         child:Icon(
@@ -261,12 +346,13 @@ class Tag {
   int like;
   String image;
   String url;
-  Tag(this.artist,this.name, this.like,this.image,this.url);
+  int track;
+  Tag(this.artist,this.name, this.like,this.image,this.url,this.track);
   factory Tag.fromJson(dynamic json) {
-    return Tag(json['Artist'] as String,json['Name'] as String, json['Like'] as int,json['image'] as String,json['url'] as String);
+    return Tag(json['Artist'] as String,json['Name'] as String, json['Like'] as int,json['image'] as String,json['url'] as String,json['Tracks'] as int);
   }
   @override
   String toString() {
-    return '{ ${this.name}, ${this.like} }';
+    return '{ ${this.name}, ${this.like}, ${this.track} }';
   }
 }

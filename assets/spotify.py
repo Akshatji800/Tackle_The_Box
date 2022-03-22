@@ -6,17 +6,9 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=cread.client_ID,
                                                client_secret=cread.client_SECRET,
                                                redirect_uri=cread.redirect_url,
                                                scope="user-library-read"))
-i=0
 f=open("file.json","w")
 results = sp.current_user_saved_tracks()
-for idx, item in enumerate(results['items']):
-    track=item["track"]
-#    i=i+1
-#    json.dump(item["album"]["name"], f)
-#    json.dump(item["album"]["images"], f)
-    print(idx, track['artists'][0]['name'], " – ", track['name'], "--", track['popularity'])
-#print(i)
-print()
+
 l={"item":[]}
 results = sp.current_user_saved_albums()
 for idx, item in enumerate(results['items']):
@@ -27,6 +19,7 @@ for idx, item in enumerate(results['items']):
     my_dict["Like"]=track['popularity']
     my_dict["image"]=track["images"][0]["url"]
     my_dict["url"]=track['external_urls']["spotify"]
+    my_dict["Tracks"]=track['total_tracks']
     l["item"].append(my_dict)
-    print(idx, track['artists'][0]['name'], " – ", track['name'], "--", track['popularity'],"--",track["images"][0]["url"])
+    print(idx, track['artists'][0]['name'], " – ", track['name'], "--", track['popularity'],"--",track["images"][0]["url"], "--", track['total_tracks'])
 json.dump(l,f)
