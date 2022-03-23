@@ -1,0 +1,685 @@
+{
+  "href" : "https://api.spotify.com/v1/users/hgh277frm7nt233s6jr20fmw5/playlists?offset=0&limit=20",
+  "items" : [ {
+    "collaborative" : false,
+    "description" : "official @sleepingongems playlist &#x2F;&#x2F; thisjointiswavy@gmail.com",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/6UfFl1PErvn3F2JCG1Hsvr"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/6UfFl1PErvn3F2JCG1Hsvr",
+    "id" : "6UfFl1PErvn3F2JCG1Hsvr",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://i.scdn.co/image/ab67706c0000bebbaf43b9379dafd656895eea03",
+      "width" : null
+    } ],
+    "name" : "GEMS 💎",
+    "owner" : {
+      "display_name" : "thisjointiswavy",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/46np75c90d9afpewl2h2btkz2"
+      },
+      "href" : "https://api.spotify.com/v1/users/46np75c90d9afpewl2h2btkz2",
+      "id" : "46np75c90d9afpewl2h2btkz2",
+      "type" : "user",
+      "uri" : "spotify:user:46np75c90d9afpewl2h2btkz2"
+    },
+    "primary_color" : null,
+    "public" : false,
+    "snapshot_id" : "NjAzLGM3MDVhZWViNGU4MWI4ZDZkYTBkNTgxNDdiZjNmZTZmNzAyN2IxYzU=",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/6UfFl1PErvn3F2JCG1Hsvr/tracks",
+      "total" : 44
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:6UfFl1PErvn3F2JCG1Hsvr"
+  }, {
+    "collaborative" : false,
+    "description" : "Futuristic historic vibe. Vapour and Synth mixes and tunes",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/1OUr3iRLqNGTvCenJdVb47"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/1OUr3iRLqNGTvCenJdVb47",
+    "id" : "1OUr3iRLqNGTvCenJdVb47",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://i.scdn.co/image/ab67706c0000bebb7222778c029f9a6a13e668e6",
+      "width" : null
+    } ],
+    "name" : "LoFi Synthwave",
+    "owner" : {
+      "display_name" : "Marcus Blackden",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/marcusblackden"
+      },
+      "href" : "https://api.spotify.com/v1/users/marcusblackden",
+      "id" : "marcusblackden",
+      "type" : "user",
+      "uri" : "spotify:user:marcusblackden"
+    },
+    "primary_color" : null,
+    "public" : false,
+    "snapshot_id" : "MzgyLGFjOTQ2NWVlMjNlMDliOWIwYjI3OTdhMmMzOWE0N2Y3MDI3NGM4MjU=",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/1OUr3iRLqNGTvCenJdVb47/tracks",
+      "total" : 860
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:1OUr3iRLqNGTvCenJdVb47"
+  }, {
+    "collaborative" : false,
+    "description" : "lofi, syntwave, electro, 2020&#x2F;2021, french touch, chill, no stress, work&#x2F;study, ambiance, summer, tranquile, été, relaxe,studie,chill, beats bass, good vibe summer mood ,sad,happy",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/27mxxeJYU3CTjgm9ZoZMSb"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/27mxxeJYU3CTjgm9ZoZMSb",
+    "id" : "27mxxeJYU3CTjgm9ZoZMSb",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://i.scdn.co/image/ab67706c0000bebb77aab4d33885da53500698e2",
+      "width" : null
+    } ],
+    "name" : "CHILL MOOD - LOFI/SYNTHWAVE 😇 🙏",
+    "owner" : {
+      "display_name" : "Floup42",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/fmtauh46taf8h653zjfqbsuhv"
+      },
+      "href" : "https://api.spotify.com/v1/users/fmtauh46taf8h653zjfqbsuhv",
+      "id" : "fmtauh46taf8h653zjfqbsuhv",
+      "type" : "user",
+      "uri" : "spotify:user:fmtauh46taf8h653zjfqbsuhv"
+    },
+    "primary_color" : null,
+    "public" : false,
+    "snapshot_id" : "MTk2LDY4NjA4NTllMDhlNzIyOGNjZjJmZmQ1Yzk4M2EwNmYwMzFlZDI4NDg=",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/27mxxeJYU3CTjgm9ZoZMSb/tracks",
+      "total" : 116
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:27mxxeJYU3CTjgm9ZoZMSb"
+  }, {
+    "collaborative" : false,
+    "description" : "A blend of music for _the_jazz_theorist_ and madvans. Updates daily.",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/37i9dQZF1EJKtIucgznIoT"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1EJKtIucgznIoT",
+    "id" : "37i9dQZF1EJKtIucgznIoT",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://blend-playlist-covers.spotifycdn.com/v2/blend_LARGE-azure-pink-en.jpg",
+      "width" : null
+    } ],
+    "name" : "madvans + _the_jazz_theorist_",
+    "owner" : {
+      "display_name" : "Spotify",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/spotify"
+      },
+      "href" : "https://api.spotify.com/v1/users/spotify",
+      "id" : "spotify",
+      "type" : "user",
+      "uri" : "spotify:user:spotify"
+    },
+    "primary_color" : null,
+    "public" : false,
+    "snapshot_id" : "MCwwMDAwMDAwMDEwMjdjNDk2MmQyMGQzYmM2MWEwMDVmY2EwODYxMjE1",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1EJKtIucgznIoT/tracks",
+      "total" : 50
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:37i9dQZF1EJKtIucgznIoT"
+  }, {
+    "collaborative" : false,
+    "description" : "A blend of music for _the_jazz_theorist_ and Roy. Updates daily.",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/37i9dQZF1EJBYQwv0n8kw4"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1EJBYQwv0n8kw4",
+    "id" : "37i9dQZF1EJBYQwv0n8kw4",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://blend-playlist-covers.spotifycdn.com/v2/blend_LARGE-gold-yellow-en.jpg",
+      "width" : null
+    } ],
+    "name" : "Roy + _the_jazz_theorist_",
+    "owner" : {
+      "display_name" : "Spotify",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/spotify"
+      },
+      "href" : "https://api.spotify.com/v1/users/spotify",
+      "id" : "spotify",
+      "type" : "user",
+      "uri" : "spotify:user:spotify"
+    },
+    "primary_color" : null,
+    "public" : false,
+    "snapshot_id" : "MCwwMDAwMDAwMDc0MTNmNTM1Y2JiMWVjOWJmYjRhNDE1ZGY3ZTFlYzNi",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1EJBYQwv0n8kw4/tracks",
+      "total" : 50
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:37i9dQZF1EJBYQwv0n8kw4"
+  }, {
+    "collaborative" : false,
+    "description" : "A blend of music for _the_jazz_theorist_ and RaihanBashir. Updates daily.",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/37i9dQZF1EJLwf50HiAlTE"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1EJLwf50HiAlTE",
+    "id" : "37i9dQZF1EJLwf50HiAlTE",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://blend-playlist-covers.spotifycdn.com/v2/blend_LARGE-tangerine-red-en.jpg",
+      "width" : null
+    } ],
+    "name" : "RaihanBashir + _the_jazz_theorist_",
+    "owner" : {
+      "display_name" : "Spotify",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/spotify"
+      },
+      "href" : "https://api.spotify.com/v1/users/spotify",
+      "id" : "spotify",
+      "type" : "user",
+      "uri" : "spotify:user:spotify"
+    },
+    "primary_color" : null,
+    "public" : false,
+    "snapshot_id" : "MCwwMDAwMDAwMDM2MjhkZjkzNzgzNjJmMjk2ZTA2MTU5ZjE3OTA1ZTFi",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1EJLwf50HiAlTE/tracks",
+      "total" : 50
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:37i9dQZF1EJLwf50HiAlTE"
+  }, {
+    "collaborative" : false,
+    "description" : "A blend of music for _the_jazz_theorist_ and KCMATHAI. Updates daily.",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/37i9dQZF1EJJ3VTYto78W4"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1EJJ3VTYto78W4",
+    "id" : "37i9dQZF1EJJ3VTYto78W4",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://blend-playlist-covers.spotifycdn.com/v2/blend_LARGE-azure-pink-en.jpg",
+      "width" : null
+    } ],
+    "name" : "KCMATHAI + _the_jazz_theorist_",
+    "owner" : {
+      "display_name" : "Spotify",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/spotify"
+      },
+      "href" : "https://api.spotify.com/v1/users/spotify",
+      "id" : "spotify",
+      "type" : "user",
+      "uri" : "spotify:user:spotify"
+    },
+    "primary_color" : null,
+    "public" : false,
+    "snapshot_id" : "MCwwMDAwMDAwMGZiOWQyMDk4YTQzYmZiOGVmMmQ2OWRjMzg5Y2IzNmZh",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1EJJ3VTYto78W4/tracks",
+      "total" : 50
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:37i9dQZF1EJJ3VTYto78W4"
+  }, {
+    "collaborative" : false,
+    "description" : "A blend of music for _the_jazz_theorist_ and George. Updates daily.",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/37i9dQZF1EJFkKAIvU0TqW"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1EJFkKAIvU0TqW",
+    "id" : "37i9dQZF1EJFkKAIvU0TqW",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://blend-playlist-covers.spotifycdn.com/v2/blend_LARGE-royal-azure-en.jpg",
+      "width" : null
+    } ],
+    "name" : "George + _the_jazz_theorist_",
+    "owner" : {
+      "display_name" : "Spotify",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/spotify"
+      },
+      "href" : "https://api.spotify.com/v1/users/spotify",
+      "id" : "spotify",
+      "type" : "user",
+      "uri" : "spotify:user:spotify"
+    },
+    "primary_color" : null,
+    "public" : false,
+    "snapshot_id" : "MCwwMDAwMDAwMDMwZmRkMmJmNzg5MDNkZjJlMmNjNDFmMWU2Mjg3NTVl",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1EJFkKAIvU0TqW/tracks",
+      "total" : 50
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:37i9dQZF1EJFkKAIvU0TqW"
+  }, {
+    "collaborative" : false,
+    "description" : "A blend of music for _the_jazz_theorist_ and Wolffgang. Updates daily.",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/37i9dQZF1EJAslKdRHdQ5r"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1EJAslKdRHdQ5r",
+    "id" : "37i9dQZF1EJAslKdRHdQ5r",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://blend-playlist-covers.spotifycdn.com/v2/blend_LARGE-pink-red-en.jpg",
+      "width" : null
+    } ],
+    "name" : "Wolffgang + _the_jazz_theorist_",
+    "owner" : {
+      "display_name" : "Spotify",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/spotify"
+      },
+      "href" : "https://api.spotify.com/v1/users/spotify",
+      "id" : "spotify",
+      "type" : "user",
+      "uri" : "spotify:user:spotify"
+    },
+    "primary_color" : null,
+    "public" : false,
+    "snapshot_id" : "MCwwMDAwMDAwMDY1ODI4OTgxNjAzZDBlMjY4Y2NkN2M2ZGE5MDQ1ZTIx",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1EJAslKdRHdQ5r/tracks",
+      "total" : 50
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:37i9dQZF1EJAslKdRHdQ5r"
+  }, {
+    "collaborative" : false,
+    "description" : "A blend of music for _the_jazz_theorist_ and Annie. Updates daily.",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/37i9dQZF1EJJQ51B8Xc1G9"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1EJJQ51B8Xc1G9",
+    "id" : "37i9dQZF1EJJQ51B8Xc1G9",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://blend-playlist-covers.spotifycdn.com/v2/blend_LARGE-maroon-red-en.jpg",
+      "width" : null
+    } ],
+    "name" : "Annie + _the_jazz_theorist_",
+    "owner" : {
+      "display_name" : "Spotify",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/spotify"
+      },
+      "href" : "https://api.spotify.com/v1/users/spotify",
+      "id" : "spotify",
+      "type" : "user",
+      "uri" : "spotify:user:spotify"
+    },
+    "primary_color" : null,
+    "public" : false,
+    "snapshot_id" : "MCwwMDAwMDAwMGI0ZTU5MWQwMjgyZTg4MDEwOTMzZjc0NjhkZWRiMDdi",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1EJJQ51B8Xc1G9/tracks",
+      "total" : 50
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:37i9dQZF1EJJQ51B8Xc1G9"
+  }, {
+    "collaborative" : false,
+    "description" : "A blend of music for _the_jazz_theorist_ and Aniketh. Updates daily.",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/37i9dQZF1EJGVaFm1CncIV"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1EJGVaFm1CncIV",
+    "id" : "37i9dQZF1EJGVaFm1CncIV",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://blend-playlist-covers.spotifycdn.com/v2/blend_LARGE-royal-aqua-en.jpg",
+      "width" : null
+    } ],
+    "name" : "Aniketh + _the_jazz_theorist_",
+    "owner" : {
+      "display_name" : "Spotify",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/spotify"
+      },
+      "href" : "https://api.spotify.com/v1/users/spotify",
+      "id" : "spotify",
+      "type" : "user",
+      "uri" : "spotify:user:spotify"
+    },
+    "primary_color" : null,
+    "public" : false,
+    "snapshot_id" : "MCwwMDAwMDAwMDk5ZWFmZjZjZGE1YmQxZDQ3OTU5YmE0Y2Q4MzE1NjIy",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1EJGVaFm1CncIV/tracks",
+      "total" : 50
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:37i9dQZF1EJGVaFm1CncIV"
+  }, {
+    "collaborative" : false,
+    "description" : "",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/4VcVJwj6ehnrFjtFwy7Oir"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/4VcVJwj6ehnrFjtFwy7Oir",
+    "id" : "4VcVJwj6ehnrFjtFwy7Oir",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://i.scdn.co/image/ab67706c0000bebbe98ebccfd51eccf78d086f5f",
+      "width" : null
+    } ],
+    "name" : "Liquid",
+    "owner" : {
+      "display_name" : "Dhiya Deepu",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/u2oz7r5zgtq4v4893rbcami1h"
+      },
+      "href" : "https://api.spotify.com/v1/users/u2oz7r5zgtq4v4893rbcami1h",
+      "id" : "u2oz7r5zgtq4v4893rbcami1h",
+      "type" : "user",
+      "uri" : "spotify:user:u2oz7r5zgtq4v4893rbcami1h"
+    },
+    "primary_color" : null,
+    "public" : false,
+    "snapshot_id" : "MzI4LDZjNDE1NTk5YmUyNDE4YmZiYjQ0N2NlZDBmN2Y4YzJjNWI5MmMzMGQ=",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/4VcVJwj6ehnrFjtFwy7Oir/tracks",
+      "total" : 122
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:4VcVJwj6ehnrFjtFwy7Oir"
+  }, {
+    "collaborative" : false,
+    "description" : "Sarcastic Sounds, Lofi Fruits Music, Avocuddle, dan lainnya",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/37i9dQZF1E39aFmQtkEVUc"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1E39aFmQtkEVUc",
+    "id" : "37i9dQZF1E39aFmQtkEVUc",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb91fd0bccbc7c68bce634d9fd/3/in/large",
+      "width" : null
+    } ],
+    "name" : "Daily Mix 3",
+    "owner" : {
+      "display_name" : "Spotify",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/spotify"
+      },
+      "href" : "https://api.spotify.com/v1/users/spotify",
+      "id" : "spotify",
+      "type" : "user",
+      "uri" : "spotify:user:spotify"
+    },
+    "primary_color" : null,
+    "public" : false,
+    "snapshot_id" : "MTY0NzgwMDcwMywwMDAwMDAwMGQxMmFmMzY4MzdjNjViY2JiNWYzZTZlMmNhZTg3ZjFl",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1E39aFmQtkEVUc/tracks",
+      "total" : 50
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:37i9dQZF1E39aFmQtkEVUc"
+  }, {
+    "collaborative" : false,
+    "description" : "",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/0OR2MgT6uRer6KEAxw5VWv"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/0OR2MgT6uRer6KEAxw5VWv",
+    "id" : "0OR2MgT6uRer6KEAxw5VWv",
+    "images" : [ {
+      "height" : 640,
+      "url" : "https://mosaic.scdn.co/640/ab67616d0000b2731b4e6756179e060d0b15264cab67616d0000b2737ef5184d1b8a8d4caddee527ab67616d0000b2738d2a0fe64f918b643ad090cdab67616d0000b273cd2bfba328cfbcda22784673",
+      "width" : 640
+    }, {
+      "height" : 300,
+      "url" : "https://mosaic.scdn.co/300/ab67616d0000b2731b4e6756179e060d0b15264cab67616d0000b2737ef5184d1b8a8d4caddee527ab67616d0000b2738d2a0fe64f918b643ad090cdab67616d0000b273cd2bfba328cfbcda22784673",
+      "width" : 300
+    }, {
+      "height" : 60,
+      "url" : "https://mosaic.scdn.co/60/ab67616d0000b2731b4e6756179e060d0b15264cab67616d0000b2737ef5184d1b8a8d4caddee527ab67616d0000b2738d2a0fe64f918b643ad090cdab67616d0000b273cd2bfba328cfbcda22784673",
+      "width" : 60
+    } ],
+    "name" : "Daily Mix 5 (2)",
+    "owner" : {
+      "display_name" : "_the_jazz_theorist_",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/hgh277frm7nt233s6jr20fmw5"
+      },
+      "href" : "https://api.spotify.com/v1/users/hgh277frm7nt233s6jr20fmw5",
+      "id" : "hgh277frm7nt233s6jr20fmw5",
+      "type" : "user",
+      "uri" : "spotify:user:hgh277frm7nt233s6jr20fmw5"
+    },
+    "primary_color" : null,
+    "public" : true,
+    "snapshot_id" : "MixmNWUzNWExMGMyMmVlY2FlOTYzMDYzYzE5MzQ3NzllZDZjOTRjZWY0",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/0OR2MgT6uRer6KEAxw5VWv/tracks",
+      "total" : 38
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:0OR2MgT6uRer6KEAxw5VWv"
+  }, {
+    "collaborative" : false,
+    "description" : "",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/37i9dQZF1E4wuPgGXxjrIv"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1E4wuPgGXxjrIv",
+    "id" : "37i9dQZF1E4wuPgGXxjrIv",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://seeded-session-images.scdn.co/v1/img/artist/5wfWBXE34E1R6nRQme7TH3/en",
+      "width" : null
+    } ],
+    "name" : "Asheru Radio",
+    "owner" : {
+      "display_name" : "Spotify",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/spotify"
+      },
+      "href" : "https://api.spotify.com/v1/users/spotify",
+      "id" : "spotify",
+      "type" : "user",
+      "uri" : "spotify:user:spotify"
+    },
+    "primary_color" : null,
+    "public" : false,
+    "snapshot_id" : "MTY0Nzk4Mzk3NSwwMDAwMDAwMDE0NmQ3ZTgwZWYxYjc0MjlmOTQ1MjYwMWE2NmQyZmE5",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1E4wuPgGXxjrIv/tracks",
+      "total" : 50
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:37i9dQZF1E4wuPgGXxjrIv"
+  }, {
+    "collaborative" : false,
+    "description" : "",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/6blAChx0WaVfqCAuEDAXyR"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/6blAChx0WaVfqCAuEDAXyR",
+    "id" : "6blAChx0WaVfqCAuEDAXyR",
+    "images" : [ {
+      "height" : 640,
+      "url" : "https://i.scdn.co/image/ab67616d0000b273ed911b0e4e41fa07e2fc717e",
+      "width" : 640
+    } ],
+    "name" : "Liked from Radio",
+    "owner" : {
+      "display_name" : "_the_jazz_theorist_",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/hgh277frm7nt233s6jr20fmw5"
+      },
+      "href" : "https://api.spotify.com/v1/users/hgh277frm7nt233s6jr20fmw5",
+      "id" : "hgh277frm7nt233s6jr20fmw5",
+      "type" : "user",
+      "uri" : "spotify:user:hgh277frm7nt233s6jr20fmw5"
+    },
+    "primary_color" : null,
+    "public" : false,
+    "snapshot_id" : "MyxkYmE1NTEyYWM1M2QwYmJjZjI2NGQwNDI0ZGUzMzgxZDg2NzkyNjli",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/6blAChx0WaVfqCAuEDAXyR/tracks",
+      "total" : 2
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:6blAChx0WaVfqCAuEDAXyR"
+  }, {
+    "collaborative" : false,
+    "description" : "Lofi's crispiest beatmakers. Cover: Cookin Soul",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/37i9dQZF1DX36Xw4IJIVKA"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1DX36Xw4IJIVKA",
+    "id" : "37i9dQZF1DX36Xw4IJIVKA",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://i.scdn.co/image/ab67706f000000035bfa4d6bec505c7a2634cc69",
+      "width" : null
+    } ],
+    "name" : "Lofi Hip-Hop",
+    "owner" : {
+      "display_name" : "Spotify",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/spotify"
+      },
+      "href" : "https://api.spotify.com/v1/users/spotify",
+      "id" : "spotify",
+      "type" : "user",
+      "uri" : "spotify:user:spotify"
+    },
+    "primary_color" : null,
+    "public" : false,
+    "snapshot_id" : "MTY0NTEzODkyMCwwMDAwMDA1YjAwMDAwMTdmMDllYmMyZTQwMDAwMDE3MGFmNDZiYjc5",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1DX36Xw4IJIVKA/tracks",
+      "total" : 94
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:37i9dQZF1DX36Xw4IJIVKA"
+  }, {
+    "collaborative" : false,
+    "description" : "",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/2CIfr2KNG8eNmC2DLGIRNU"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/2CIfr2KNG8eNmC2DLGIRNU",
+    "id" : "2CIfr2KNG8eNmC2DLGIRNU",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://i.scdn.co/image/ab67706c0000bebbb637fd450d0cf041a700625a",
+      "width" : null
+    } ],
+    "name" : "Favorite・DREAMY",
+    "owner" : {
+      "display_name" : "Dreamy",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/6qxhced3b0l62lh3fedtbv14y"
+      },
+      "href" : "https://api.spotify.com/v1/users/6qxhced3b0l62lh3fedtbv14y",
+      "id" : "6qxhced3b0l62lh3fedtbv14y",
+      "type" : "user",
+      "uri" : "spotify:user:6qxhced3b0l62lh3fedtbv14y"
+    },
+    "primary_color" : null,
+    "public" : false,
+    "snapshot_id" : "MTQ3Nyw5ZTE5ZDVjMzBlZGVkMmMyZTlkNjY2YmY1NGVkMTNmYWExZGExMzMz",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/2CIfr2KNG8eNmC2DLGIRNU/tracks",
+      "total" : 647
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:2CIfr2KNG8eNmC2DLGIRNU"
+  }, {
+    "collaborative" : false,
+    "description" : "Groovy sounds from around the world.",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/37i9dQZF1DWUS3jbm4YExP"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1DWUS3jbm4YExP",
+    "id" : "37i9dQZF1DWUS3jbm4YExP",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://i.scdn.co/image/ab67706f000000038c6101772f61f9575162ce5b",
+      "width" : null
+    } ],
+    "name" : "Global Groove",
+    "owner" : {
+      "display_name" : "Spotify",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/spotify"
+      },
+      "href" : "https://api.spotify.com/v1/users/spotify",
+      "id" : "spotify",
+      "type" : "user",
+      "uri" : "spotify:user:spotify"
+    },
+    "primary_color" : null,
+    "public" : false,
+    "snapshot_id" : "MTY0Nzk4Mzk3NSwwMDAwMDAwMGQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0Mjdl",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/37i9dQZF1DWUS3jbm4YExP/tracks",
+      "total" : 100
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:37i9dQZF1DWUS3jbm4YExP"
+  }, {
+    "collaborative" : true,
+    "description" : "",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/1NpEEVDGABZBOzyuo2ncFi"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/1NpEEVDGABZBOzyuo2ncFi",
+    "id" : "1NpEEVDGABZBOzyuo2ncFi",
+    "images" : [ {
+      "height" : 640,
+      "url" : "https://mosaic.scdn.co/640/ab67616d0000b27309d4d0d84d41f9a120d4abcaab67616d0000b2733d5b8fe604275dfab677bd0dab67616d0000b273602ca5b83fe44b68074a74b2ab67616d0000b27392a259ccc0f606364992438f",
+      "width" : 640
+    }, {
+      "height" : 300,
+      "url" : "https://mosaic.scdn.co/300/ab67616d0000b27309d4d0d84d41f9a120d4abcaab67616d0000b2733d5b8fe604275dfab677bd0dab67616d0000b273602ca5b83fe44b68074a74b2ab67616d0000b27392a259ccc0f606364992438f",
+      "width" : 300
+    }, {
+      "height" : 60,
+      "url" : "https://mosaic.scdn.co/60/ab67616d0000b27309d4d0d84d41f9a120d4abcaab67616d0000b2733d5b8fe604275dfab677bd0dab67616d0000b273602ca5b83fe44b68074a74b2ab67616d0000b27392a259ccc0f606364992438f",
+      "width" : 60
+    } ],
+    "name" : "its a playlist",
+    "owner" : {
+      "display_name" : "_the_jazz_theorist_",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/hgh277frm7nt233s6jr20fmw5"
+      },
+      "href" : "https://api.spotify.com/v1/users/hgh277frm7nt233s6jr20fmw5",
+      "id" : "hgh277frm7nt233s6jr20fmw5",
+      "type" : "user",
+      "uri" : "spotify:user:hgh277frm7nt233s6jr20fmw5"
+    },
+    "primary_color" : null,
+    "public" : false,
+    "snapshot_id" : "MjYsMGI4NGFhMTU4MWQ3YTM5ZmVhY2JkNTEzNDE0MzdmY2RiYjcwNmQ2Nw==",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/1NpEEVDGABZBOzyuo2ncFi/tracks",
+      "total" : 45
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:1NpEEVDGABZBOzyuo2ncFi"
+  } ],
+  "limit" : 20,
+  "next" : "https://api.spotify.com/v1/users/hgh277frm7nt233s6jr20fmw5/playlists?offset=20&limit=20",
+  "offset" : 0,
+  "previous" : null,
+  "total" : 41
+}
