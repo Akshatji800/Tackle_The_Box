@@ -1,0 +1,518 @@
+{
+    "href": "https://api.spotify.com/v1/users/31dnb7yjojzr6xhm3vpfkkv5znza/playlists?offset=0&limit=20",
+    "items": [
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/5qV5i4SJpDgossR5sYofCh"
+        },
+        "href": "https://api.spotify.com/v1/playlists/5qV5i4SJpDgossR5sYofCh",
+        "id": "5qV5i4SJpDgossR5sYofCh",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273da6eb6b07a5627422f5e206b",
+            "width": 640
+          }
+        ],
+        "name": "2020-LoveStory",
+        "owner": {
+          "display_name": "Manoj Sadanala",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31fnytmcrhil3lqdekzzg2dokboi"
+          },
+          "href": "https://api.spotify.com/v1/users/31fnytmcrhil3lqdekzzg2dokboi",
+          "id": "31fnytmcrhil3lqdekzzg2dokboi",
+          "type": "user",
+          "uri": "spotify:user:31fnytmcrhil3lqdekzzg2dokboi"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTIsYTk0NzhkYWRmZmE2NTZiZjQzNTkzZWFhZDMxNmZmM2IwNzlhYWIwNA==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/5qV5i4SJpDgossR5sYofCh/tracks",
+          "total": 10
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:5qV5i4SJpDgossR5sYofCh"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/3YnijGF08KO6wOaBYjfip6"
+        },
+        "href": "https://api.spotify.com/v1/playlists/3YnijGF08KO6wOaBYjfip6",
+        "id": "3YnijGF08KO6wOaBYjfip6",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273ac56d6f8143a70df50a3b5d8",
+            "width": 640
+          }
+        ],
+        "name": "Sheeesssh",
+        "owner": {
+          "display_name": "Asr Reddy",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31dnb7yjojzr6xhm3vpfkkv5znza"
+          },
+          "href": "https://api.spotify.com/v1/users/31dnb7yjojzr6xhm3vpfkkv5znza",
+          "id": "31dnb7yjojzr6xhm3vpfkkv5znza",
+          "type": "user",
+          "uri": "spotify:user:31dnb7yjojzr6xhm3vpfkkv5znza"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MywwYjBkYWFiNmI0YzRhODk4MWU1OTY5OGZhMzMyMGY0NTM3NDM5MGFi",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/3YnijGF08KO6wOaBYjfip6/tracks",
+          "total": 2
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:3YnijGF08KO6wOaBYjfip6"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/2arvyQPrNi3NuHCrGX1h4f"
+        },
+        "href": "https://api.spotify.com/v1/playlists/2arvyQPrNi3NuHCrGX1h4f",
+        "id": "2arvyQPrNi3NuHCrGX1h4f",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2731e869a1d333210eaa2bfe670",
+            "width": 640
+          }
+        ],
+        "name": "Sounds to listen",
+        "owner": {
+          "display_name": "Asr Reddy",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31dnb7yjojzr6xhm3vpfkkv5znza"
+          },
+          "href": "https://api.spotify.com/v1/users/31dnb7yjojzr6xhm3vpfkkv5znza",
+          "id": "31dnb7yjojzr6xhm3vpfkkv5znza",
+          "type": "user",
+          "uri": "spotify:user:31dnb7yjojzr6xhm3vpfkkv5znza"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "NCw1ZTFkNWNhNTBjZDAwNmM3NTIwMWVmYjhmN2ZlN2NlMjBiNjEwNDkw",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/2arvyQPrNi3NuHCrGX1h4f/tracks",
+          "total": 3
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:2arvyQPrNi3NuHCrGX1h4f"
+      },
+      {
+        "collaborative": false,
+        "description": "Camila Cabello is on top of the Hottest 50!",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXcBWIGoYBM5M",
+        "id": "37i9dQZF1DXcBWIGoYBM5M",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706f00000003bd5e3afef1dab26f4c78feec",
+            "width": null
+          }
+        ],
+        "name": "Today's Top Hits",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTY0NzU3NjAwMCwwMDAwMDUyYjAwMDAwMTdmOWIyZWE2ZGEwMDAwMDE3Zjk4YTI4ZDc3",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DXcBWIGoYBM5M/tracks",
+          "total": 50
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1DXcBWIGoYBM5M"
+      },
+      {
+        "collaborative": false,
+        "description": "The biggest tracks featuring all your favourite artists!",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/36ADqk8xgLEcVciKXMgsnm"
+        },
+        "href": "https://api.spotify.com/v1/playlists/36ADqk8xgLEcVciKXMgsnm",
+        "id": "36ADqk8xgLEcVciKXMgsnm",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebb633d45ce6f857eb2036d4258",
+            "width": null
+          }
+        ],
+        "name": "HITS OF 2021",
+        "owner": {
+          "display_name": "Digster India",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/vqtrmz100zu1h0fl4uz8co3of"
+          },
+          "href": "https://api.spotify.com/v1/users/vqtrmz100zu1h0fl4uz8co3of",
+          "id": "vqtrmz100zu1h0fl4uz8co3of",
+          "type": "user",
+          "uri": "spotify:user:vqtrmz100zu1h0fl4uz8co3of"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "NTcyLGI3NDU5OGNkODViNjViZDVlZjY4NWZhMWNkMjhhNGUyYzMwOGZiYTg=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/36ADqk8xgLEcVciKXMgsnm/tracks",
+          "total": 40
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:36ADqk8xgLEcVciKXMgsnm"
+      },
+      {
+        "collaborative": false,
+        "description": "My favorite songs from the genres: Chill House, Deep House, Tropical House, Chillout, Lounge, Ambient 2022 and basically anything that you want to listen to when you are relaxing in a lounge or at the beach :) - Relax, Relaxing House Music",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/75XrS5HXOmVYMgdXlaQTwO"
+        },
+        "href": "https://api.spotify.com/v1/playlists/75XrS5HXOmVYMgdXlaQTwO",
+        "id": "75XrS5HXOmVYMgdXlaQTwO",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebbcbb316fcc9f45dccf2edf85f",
+            "width": null
+          }
+        ],
+        "name": "Relaxing & Chill House 2022 🌴 The Good Life Radio ",
+        "owner": {
+          "display_name": "Sensual Musique",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/sensualmusique"
+          },
+          "href": "https://api.spotify.com/v1/users/sensualmusique",
+          "id": "sensualmusique",
+          "type": "user",
+          "uri": "spotify:user:sensualmusique"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MzA3NSw4ZDAzODIxM2I1MWRiYjM2ZjQwZjc3NDk2MjBjZGY0ZmQ2ZDc3YmQ4",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/75XrS5HXOmVYMgdXlaQTwO/tracks",
+          "total": 265
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:75XrS5HXOmVYMgdXlaQTwO"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/1bF31sxk6xL6qWUzVhefiM"
+        },
+        "href": "https://api.spotify.com/v1/playlists/1bF31sxk6xL6qWUzVhefiM",
+        "id": "1bF31sxk6xL6qWUzVhefiM",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://mosaic.scdn.co/640/ab67616d0000b2732624a3e6ebe1b2fb818c85ffab67616d0000b2732cc07ba62b8b18f6bc6571ceab67616d0000b273e5e65707700ade55c694ebeaab67616d0000b273ec012b8f136b71395881309d",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://mosaic.scdn.co/300/ab67616d0000b2732624a3e6ebe1b2fb818c85ffab67616d0000b2732cc07ba62b8b18f6bc6571ceab67616d0000b273e5e65707700ade55c694ebeaab67616d0000b273ec012b8f136b71395881309d",
+            "width": 300
+          },
+          {
+            "height": 60,
+            "url": "https://mosaic.scdn.co/60/ab67616d0000b2732624a3e6ebe1b2fb818c85ffab67616d0000b2732cc07ba62b8b18f6bc6571ceab67616d0000b273e5e65707700ade55c694ebeaab67616d0000b273ec012b8f136b71395881309d",
+            "width": 60
+          }
+        ],
+        "name": "Telugu Vibes",
+        "owner": {
+          "display_name": "Asr Reddy",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31dnb7yjojzr6xhm3vpfkkv5znza"
+          },
+          "href": "https://api.spotify.com/v1/users/31dnb7yjojzr6xhm3vpfkkv5znza",
+          "id": "31dnb7yjojzr6xhm3vpfkkv5znza",
+          "type": "user",
+          "uri": "spotify:user:31dnb7yjojzr6xhm3vpfkkv5znza"
+        },
+        "primary_color": null,
+        "public": true,
+        "snapshot_id": "MTgsNWE3M2U4Yzg1MzhjZWNmM2MxMzJiZjQzM2NjNGRhYmQ1NDEwN2NkMg==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/1bF31sxk6xL6qWUzVhefiM/tracks",
+          "total": 16
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:1bF31sxk6xL6qWUzVhefiM"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/2PpwIA5slwJAb8rFcKwtPu"
+        },
+        "href": "https://api.spotify.com/v1/playlists/2PpwIA5slwJAb8rFcKwtPu",
+        "id": "2PpwIA5slwJAb8rFcKwtPu",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebb4b07b0080d2f88a760656f4a",
+            "width": null
+          }
+        ],
+        "name": "MAGNESIUM",
+        "owner": {
+          "display_name": "Manoj Sadanala",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31fnytmcrhil3lqdekzzg2dokboi"
+          },
+          "href": "https://api.spotify.com/v1/users/31fnytmcrhil3lqdekzzg2dokboi",
+          "id": "31fnytmcrhil3lqdekzzg2dokboi",
+          "type": "user",
+          "uri": "spotify:user:31fnytmcrhil3lqdekzzg2dokboi"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "OTg4LDMyYjQxOGFlYTAxZDA2MzYyY2E2OTY5ZDk1ZDkxNzUxNjdlNDUxMDU=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/2PpwIA5slwJAb8rFcKwtPu/tracks",
+          "total": 373
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:2PpwIA5slwJAb8rFcKwtPu"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/52aPKUNqdiCdwpZCC6jLam"
+        },
+        "href": "https://api.spotify.com/v1/playlists/52aPKUNqdiCdwpZCC6jLam",
+        "id": "52aPKUNqdiCdwpZCC6jLam",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://mosaic.scdn.co/640/ab67616d0000b2731e340d1480e7bb29a45e3bd7ab67616d0000b2731e9a057052d59004caf47e22ab67616d0000b273c6710b4a52539506c30e5354ab67616d0000b273f2486b438645e97b523e4f90",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://mosaic.scdn.co/300/ab67616d0000b2731e340d1480e7bb29a45e3bd7ab67616d0000b2731e9a057052d59004caf47e22ab67616d0000b273c6710b4a52539506c30e5354ab67616d0000b273f2486b438645e97b523e4f90",
+            "width": 300
+          },
+          {
+            "height": 60,
+            "url": "https://mosaic.scdn.co/60/ab67616d0000b2731e340d1480e7bb29a45e3bd7ab67616d0000b2731e9a057052d59004caf47e22ab67616d0000b273c6710b4a52539506c30e5354ab67616d0000b273f2486b438645e97b523e4f90",
+            "width": 60
+          }
+        ],
+        "name": "VInTage",
+        "owner": {
+          "display_name": "Asr Reddy",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31dnb7yjojzr6xhm3vpfkkv5znza"
+          },
+          "href": "https://api.spotify.com/v1/users/31dnb7yjojzr6xhm3vpfkkv5znza",
+          "id": "31dnb7yjojzr6xhm3vpfkkv5znza",
+          "type": "user",
+          "uri": "spotify:user:31dnb7yjojzr6xhm3vpfkkv5znza"
+        },
+        "primary_color": null,
+        "public": true,
+        "snapshot_id": "MTIsOWNiODY4ZjFmNTMxMzBjNzAxODQ4NmJlN2I0ODU3NDc5ZjYyOGRmOA==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/52aPKUNqdiCdwpZCC6jLam/tracks",
+          "total": 8
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:52aPKUNqdiCdwpZCC6jLam"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/3mTvRgsgZunbpkIU0OhlSN"
+        },
+        "href": "https://api.spotify.com/v1/playlists/3mTvRgsgZunbpkIU0OhlSN",
+        "id": "3mTvRgsgZunbpkIU0OhlSN",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://mosaic.scdn.co/640/ab67616d0000b2730cef476af39956e71ff4ae2cab67616d0000b2737ade11faace586a6cfa5fef3ab67616d0000b27390f3d8c62296b0f08868e615ab67616d0000b273fadfbbdf504b00ec8e485098",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://mosaic.scdn.co/300/ab67616d0000b2730cef476af39956e71ff4ae2cab67616d0000b2737ade11faace586a6cfa5fef3ab67616d0000b27390f3d8c62296b0f08868e615ab67616d0000b273fadfbbdf504b00ec8e485098",
+            "width": 300
+          },
+          {
+            "height": 60,
+            "url": "https://mosaic.scdn.co/60/ab67616d0000b2730cef476af39956e71ff4ae2cab67616d0000b2737ade11faace586a6cfa5fef3ab67616d0000b27390f3d8c62296b0f08868e615ab67616d0000b273fadfbbdf504b00ec8e485098",
+            "width": 60
+          }
+        ],
+        "name": "రాck",
+        "owner": {
+          "display_name": "Asr Reddy",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31dnb7yjojzr6xhm3vpfkkv5znza"
+          },
+          "href": "https://api.spotify.com/v1/users/31dnb7yjojzr6xhm3vpfkkv5znza",
+          "id": "31dnb7yjojzr6xhm3vpfkkv5znza",
+          "type": "user",
+          "uri": "spotify:user:31dnb7yjojzr6xhm3vpfkkv5znza"
+        },
+        "primary_color": null,
+        "public": true,
+        "snapshot_id": "MzQsYTQwMzEyZmEwNjA1YzY5MWNlZjI0OWI2ZmYxYWZkOTE4YjAwZWI2OQ==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/3mTvRgsgZunbpkIU0OhlSN/tracks",
+          "total": 32
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:3mTvRgsgZunbpkIU0OhlSN"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/4FSbOPIAf8k8JLEU3fp6MP"
+        },
+        "href": "https://api.spotify.com/v1/playlists/4FSbOPIAf8k8JLEU3fp6MP",
+        "id": "4FSbOPIAf8k8JLEU3fp6MP",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebb253a5c387a4092f63aa40dbd",
+            "width": null
+          }
+        ],
+        "name": "Chillकरो",
+        "owner": {
+          "display_name": "Asr Reddy",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31dnb7yjojzr6xhm3vpfkkv5znza"
+          },
+          "href": "https://api.spotify.com/v1/users/31dnb7yjojzr6xhm3vpfkkv5znza",
+          "id": "31dnb7yjojzr6xhm3vpfkkv5znza",
+          "type": "user",
+          "uri": "spotify:user:31dnb7yjojzr6xhm3vpfkkv5znza"
+        },
+        "primary_color": null,
+        "public": true,
+        "snapshot_id": "MzUsMTQ0YTRhZjcyM2I0YjA0MmYzYWViMzc2NjUyYWQ1ZTRhZThkNWE2ZQ==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/4FSbOPIAf8k8JLEU3fp6MP/tracks",
+          "total": 28
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:4FSbOPIAf8k8JLEU3fp6MP"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/1lkuTZKpECW2Hc6xXDHNvz"
+        },
+        "href": "https://api.spotify.com/v1/playlists/1lkuTZKpECW2Hc6xXDHNvz",
+        "id": "1lkuTZKpECW2Hc6xXDHNvz",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://mosaic.scdn.co/640/ab67616d0000b2730db4898026f2f0d478abf0e7ab67616d0000b2732518e3a90ed5df96a6dba7beab67616d0000b2738a6ccb507dd6a66f7f6e2440ab67616d0000b273de03bfc2991fd5bcfde65ba3",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://mosaic.scdn.co/300/ab67616d0000b2730db4898026f2f0d478abf0e7ab67616d0000b2732518e3a90ed5df96a6dba7beab67616d0000b2738a6ccb507dd6a66f7f6e2440ab67616d0000b273de03bfc2991fd5bcfde65ba3",
+            "width": 300
+          },
+          {
+            "height": 60,
+            "url": "https://mosaic.scdn.co/60/ab67616d0000b2730db4898026f2f0d478abf0e7ab67616d0000b2732518e3a90ed5df96a6dba7beab67616d0000b2738a6ccb507dd6a66f7f6e2440ab67616d0000b273de03bfc2991fd5bcfde65ba3",
+            "width": 60
+          }
+        ],
+        "name": "ENgMIx",
+        "owner": {
+          "display_name": "Asr Reddy",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/31dnb7yjojzr6xhm3vpfkkv5znza"
+          },
+          "href": "https://api.spotify.com/v1/users/31dnb7yjojzr6xhm3vpfkkv5znza",
+          "id": "31dnb7yjojzr6xhm3vpfkkv5znza",
+          "type": "user",
+          "uri": "spotify:user:31dnb7yjojzr6xhm3vpfkkv5znza"
+        },
+        "primary_color": null,
+        "public": true,
+        "snapshot_id": "MjgsNDBjNzNkNjE1NTRkMzkwMDA5NGI1Y2Q0NGE2Y2QxYzQzNzk2NWUyOA==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/1lkuTZKpECW2Hc6xXDHNvz/tracks",
+          "total": 24
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:1lkuTZKpECW2Hc6xXDHNvz"
+      },
+      {
+        "collaborative": false,
+        "description": "JUST HIT THE RANDOM BUTTON ",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/5RkvwBK0qTOj6QOgtBplnc"
+        },
+        "href": "https://api.spotify.com/v1/playlists/5RkvwBK0qTOj6QOgtBplnc",
+        "id": "5RkvwBK0qTOj6QOgtBplnc",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebbeb3bd85a99443a75cc73df0d",
+            "width": null
+          }
+        ],
+        "name": "ALL TIME HIGH",
+        "owner": {
+          "display_name": "R1tH@$#",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/314pbmn3wcyqwz7kovfbu2lupxga"
+          },
+          "href": "https://api.spotify.com/v1/users/314pbmn3wcyqwz7kovfbu2lupxga",
+          "id": "314pbmn3wcyqwz7kovfbu2lupxga",
+          "type": "user",
+          "uri": "spotify:user:314pbmn3wcyqwz7kovfbu2lupxga"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTQ2OCxiZDI1ZDQ2OGY5MTU0MTk4M2VjYTJmNDNjZDc4MzhjMjNhYzgzNTZl",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/5RkvwBK0qTOj6QOgtBplnc/tracks",
+          "total": 1657
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:5RkvwBK0qTOj6QOgtBplnc"
+      }
+    ],
+    "limit": 20,
+    "next": null,
+    "offset": 0,
+    "previous": null,
+    "total": 13
+  }
