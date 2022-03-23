@@ -55,7 +55,7 @@ class Item {
     this.externalUrls,
     this.href,
     this.id,
-    this.images,
+    required this.images,
     required this.name,
     required this.owner,
     this.primaryColor,
@@ -71,7 +71,7 @@ class Item {
   ExternalUrls? externalUrls;
   String? href;
   String? id;
-  List<Image>? images;
+  List<Image> images;
   String name;
   Owner owner;
   dynamic primaryColor;
@@ -135,12 +135,12 @@ class ExternalUrls {
 class Image {
   Image({
     this.height,
-    this.url,
+    required this.url,
     this.width,
   });
 
   int? height;
-  String? url;
+  String url;
   int? width;
 
   factory Image.fromJson(Map<String, dynamic> json) => Image(

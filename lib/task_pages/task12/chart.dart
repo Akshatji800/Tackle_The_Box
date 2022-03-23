@@ -9,8 +9,8 @@ class BarChartSample2 extends StatefulWidget {
 }
 
 class BarChartSample2State extends State<BarChartSample2> {
-  final Color leftBarColor = const Color(0xff53fdd7);
-  final Color rightBarColor = const Color(0xffff5182);
+  final Color leftBarColor = const Color.fromRGBO(30, 215, 96, 1);
+  final Color rightBarColor = Color.fromARGB(255, 255, 255, 255);
   final double width = 7;
 
   late List<BarChartGroupData> rawBarGroups;
@@ -21,7 +21,7 @@ class BarChartSample2State extends State<BarChartSample2> {
   @override
   void initState() {
     super.initState();
-    final barGroup1 = makeGroupData(0, 5, 12);
+    final barGroup1 = makeGroupData(0, 10, 0);
     final barGroup2 = makeGroupData(1, 16, 12);
     final barGroup3 = makeGroupData(2, 18, 5);
     final barGroup4 = makeGroupData(3, 20, 16);
@@ -51,7 +51,7 @@ class BarChartSample2State extends State<BarChartSample2> {
       child: Card(
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-        color: const Color(0xff2c4260),
+        color: const Color.fromARGB(255, 0, 0, 0),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
@@ -69,14 +69,14 @@ class BarChartSample2State extends State<BarChartSample2> {
                     width: 38,
                   ),
                   const Text(
-                    'Transactions',
+                    'Followers Vs Songs',
                     style: TextStyle(color: Colors.white, fontSize: 22),
                   ),
                   const SizedBox(
                     width: 4,
                   ),
                   const Text(
-                    'state',
+                    'spotify',
                     style: TextStyle(color: Color(0xff77839a), fontSize: 16),
                   ),
                 ],
@@ -149,21 +149,21 @@ class BarChartSample2State extends State<BarChartSample2> {
                         getTitles: (double value) {
                           switch (value.toInt()) {
                             case 0:
-                              return 'Mn';
+                              return '1';
                             case 1:
-                              return 'Te';
+                              return '2';
                             case 2:
-                              return 'Wd';
+                              return '3';
                             case 3:
-                              return 'Tu';
+                              return '4';
                             case 4:
-                              return 'Fr';
+                              return '5';
                             case 5:
-                              return 'St';
+                              return '6';
                             case 6:
-                              return 'Sn';
+                              return '7';
                             default:
-                              return '';
+                              return '8';
                           }
                         },
                       ),
@@ -178,11 +178,15 @@ class BarChartSample2State extends State<BarChartSample2> {
                         interval: 1,
                         getTitles: (value) {
                           if (value == 0) {
-                            return '1K';
+                            return '0';
+                          } else if (value == 5) {
+                            return '50';
                           } else if (value == 10) {
-                            return '5K';
-                          } else if (value == 19) {
-                            return '10K';
+                            return '100';
+                          } else if (value == 15) {
+                            return '150';
+                          } else if (value == 20) {
+                            return '200';
                           } else {
                             return '';
                           }
