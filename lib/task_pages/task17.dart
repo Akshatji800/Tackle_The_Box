@@ -308,7 +308,7 @@ class _TaskDashboardState extends State<TaskSeventeen> {
                               Icon(Icons.favorite,size: 90,),
 
                               // Icon(Icons.favorite),
-                              Text('Total Songs: ${pl_count.toString()}',
+                              Text('${pl_names[0]}',
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 17.0,
