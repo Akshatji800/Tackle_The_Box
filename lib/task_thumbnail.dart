@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tackle_the_box/task_boxes.dart';
 import 'package:tackle_the_box/task_pages/task_description.dart';
+import 'package:tackle_the_box/solution.dart';
 
 class TaskThumbnail extends StatelessWidget {
   final Items task;
@@ -55,7 +56,7 @@ class TaskThumbnail extends StatelessWidget {
                 const SizedBox(width: 3,),
                 GestureDetector(
                   onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => task.widName
+                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => Solution()
                     ));
                   },
                   child: Container(
