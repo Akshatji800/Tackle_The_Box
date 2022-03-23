@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/initial-screen',
       routes: Navigate.routes,
+      
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
