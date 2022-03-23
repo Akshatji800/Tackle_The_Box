@@ -173,6 +173,7 @@ class _TaskDashboardState extends State<TaskSeventeen> {
     final pl_song_cnt = dataFuture?["Total Song Count"];
     final pl_picture = dataFuture?["Play List Image Link"];
     final pl_link = dataFuture?["Play List Link"];
+    // final likes = pl_likes.sort();
     print(dataFuture);
 
     // for (int index = 1; index <= pl_count; index++)
@@ -226,7 +227,7 @@ class _TaskDashboardState extends State<TaskSeventeen> {
           style: TextStyle(color: Colors.white),
         ),
 
-        backgroundColor: Colors.yellow.shade800,
+        backgroundColor: Color(0xFF1B5E20),
         elevation: 1,
         leading: IconButton(
           onPressed: () {
@@ -240,16 +241,13 @@ class _TaskDashboardState extends State<TaskSeventeen> {
         ),
       ),
         body: StaggeredGridView.countBuilder(
+
             crossAxisCount: 2,
             crossAxisSpacing: 12.0,
             mainAxisSpacing: 12.0,
-            padding: EdgeInsets.symmetric(horizontal: 4.0,vertical: 8.0),
+            padding: EdgeInsets.symmetric(horizontal: 10.0,vertical: 8.0),
             itemBuilder: (c,i){
-              // if(i==1){
-              //   return charts.BarChart(seriesSongs,animate: true);
-              //
-              // }
-              if(i==1 || i==2) {
+              if(i==2){
                 return Container(
                   // color: i%2==0? Colors.black: Colors.deepOrange,
                   child: Center(
@@ -261,13 +259,15 @@ class _TaskDashboardState extends State<TaskSeventeen> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Icon(Icons.favorite),
+                              // Image.asset("assets/members/favorite.webp",
+                              //     width: 100, height: 100),
+                              Icon(Icons.audiotrack_rounded,size: 90,),
 
                               // Icon(Icons.favorite),
-                              Text(pl_count.toString(),
+                              Text('Total Tracks: ${pl_count}',
                                   style: TextStyle(
-                                    color: Colors.amber,
-                                    fontSize: 20.0,
+                                    color: Colors.black,
+                                    fontSize: 17.0,
                                   ))
                             ],
                           )
@@ -278,7 +278,51 @@ class _TaskDashboardState extends State<TaskSeventeen> {
                   ),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(24.0),
-                      color: Colors.white,
+                      color: Color(0XFF66BB6A),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey,
+                            offset: Offset(0.0, 5.0),
+                            blurRadius: 6.0
+                        )
+                      ]
+                  ),
+
+                );
+
+              }
+              if(i==1) {
+                return Container(
+                  // color: i%2==0? Colors.black: Colors.deepOrange,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              // Image.asset("assets/members/favorite.webp",
+                              //     width: 100, height: 100),
+                              Icon(Icons.favorite,size: 90,),
+
+                              // Icon(Icons.favorite),
+                              Text('Total Songs: ${pl_count.toString()}',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17.0,
+                                  ))
+                            ],
+                          )
+
+                        ],
+                      ),
+                    ),
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24.0),
+                      color: Color(0XFFA5D6A7),
                       boxShadow: [
                         BoxShadow(
                             color: Colors.grey,
@@ -298,6 +342,7 @@ class _TaskDashboardState extends State<TaskSeventeen> {
                   padding: EdgeInsets.all(5),
                   child: ListView(
                     children: [
+
                       DataTable(
                         columnSpacing: 10.0,
                           columns:[DataColumn(label: Text('ID'),),
@@ -318,7 +363,7 @@ class _TaskDashboardState extends State<TaskSeventeen> {
 
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(24.0),
-                      color: Colors.white,
+                      color: Color(0xFFC8E6C9),
                       boxShadow: [
                         BoxShadow(
                             color: Colors.grey,
@@ -386,7 +431,11 @@ class _TaskDashboardState extends State<TaskSeventeen> {
 
     );
     }
-    return const CircularProgressIndicator();
+    return Container(
+      child: Center(
+
+      ),
+    );
 
   }
 }
