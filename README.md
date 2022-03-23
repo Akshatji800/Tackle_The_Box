@@ -19,3 +19,10 @@ Show your creativity and feel free to make a creative and good looking UI. We sh
 ## 📋 Additional Information
 
 The best looking UI will get a sponsored trip to mars from Sujith (in collab with SpaceX). :alien:
+
+## Recording
+
+
+
+https://user-images.githubusercontent.com/83648898/159631482-2121d2fb-1ae6-41fc-930e-a89b468479fc.mp4
+
