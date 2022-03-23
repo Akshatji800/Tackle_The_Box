@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'task_pages/task6/spotifygraph/lib/homePage.dart';
 import 'package:tackle_the_box/task_pages/allTasks.dart';
 import 'package:tackle_the_box/task_pages/task22.dart';
 import 'package:tackle_the_box/task_pages/task23.dart';
@@ -14,7 +15,6 @@ class TaskDashboard extends StatefulWidget {
 }
 
 class TaskDashboardState extends State<TaskDashboard> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,10 +31,10 @@ class TaskDashboardState extends State<TaskDashboard> {
           width: double.infinity,
           decoration: BoxDecoration(
               gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-                Colors.black,
-                Colors.grey.shade700,
-                Colors.black,
-              ])),
+            Colors.black,
+            Colors.grey.shade700,
+            Colors.black,
+          ])),
           child: Column(
             children: <Widget>[
               const SizedBox(
@@ -56,22 +56,20 @@ class TaskDashboardState extends State<TaskDashboard> {
                         children: const <Widget>[
                           Text(
                             "Flutter Curriculum Task",
-                            style: (
-                                 TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold)),
+                            style: (TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold)),
                           ),
                           SizedBox(
                             height: 4,
                           ),
                           Text(
                             "amFOSS 2021",
-                            style: (
-                                TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600)),
+                            style: (TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600)),
                           ),
                         ],
                       ),
@@ -90,8 +88,6 @@ class TaskDashboardState extends State<TaskDashboard> {
 }
 
 class OptionsCreater extends StatefulWidget {
-
-
   const OptionsCreater({Key? key}) : super(key: key);
 
   @override
@@ -99,7 +95,8 @@ class OptionsCreater extends StatefulWidget {
 }
 
 class _OptionsCreaterState extends State<OptionsCreater> {
-  static const String spotifyTask = 'Use spotify API to fetch data about the playlists you love and display the details of those playlists in a table format. Also, make a graph comparing the number of likes, total number of songs.';
+  static const String spotifyTask =
+      'Use spotify API to fetch data about the playlists you love and display the details of those playlists in a table format. Also, make a graph comparing the number of likes, total number of songs.';
   Items item1 = Items(
     title: "Adithya Rajendran",
     taskTitle: "Spotify Music Comparison",
@@ -145,7 +142,7 @@ class _OptionsCreaterState extends State<OptionsCreater> {
     taskTitle: "Spotify Music Comparison",
     img: "assets/members/David_Veliath.png",
     taskdescription: spotifyTask,
-    widName: const TaskSix(),
+    widName: HomePage(),
   );
 
   Items item7 = Items(
@@ -302,22 +299,48 @@ class _OptionsCreaterState extends State<OptionsCreater> {
 
   @override
   Widget build(BuildContext context) {
-    List<Items> myList = [item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12, item13, item14, item15, item16, item17, item18, item19, item20, item21, item22, item23, item24, item25];
-    List<Widget> classname = [TaskOne(),];
+    List<Items> myList = [
+      item1,
+      item2,
+      item3,
+      item4,
+      item5,
+      item6,
+      item7,
+      item8,
+      item9,
+      item10,
+      item11,
+      item12,
+      item13,
+      item14,
+      item15,
+      item16,
+      item17,
+      item18,
+      item19,
+      item20,
+      item21,
+      item22,
+      item23,
+      item24,
+      item25
+    ];
+    List<Widget> classname = [
+      TaskOne(),
+    ];
     return Flexible(
-        child:Padding(
-          padding: const EdgeInsets.all(10),
-          child: GridView.builder(
-            itemCount: myList.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2
-            ),
-            itemBuilder: (context,index){
-              return TaskThumbnail(task: myList[index]);
-            },
-          ),
-        )
-    );
+        child: Padding(
+      padding: const EdgeInsets.all(10),
+      child: GridView.builder(
+        itemCount: myList.length,
+        gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        itemBuilder: (context, index) {
+          return TaskThumbnail(task: myList[index]);
+        },
+      ),
+    ));
   }
 }
 
@@ -327,13 +350,11 @@ class Items {
   String img;
   String taskdescription;
   Widget widName;
-  Items(
-      {
-      required this.title,
-        required this.taskTitle,
-      required this.img,
-      required this.taskdescription,
-      required this.widName,
-      }
-  );
+  Items({
+    required this.title,
+    required this.taskTitle,
+    required this.img,
+    required this.taskdescription,
+    required this.widName,
+  });
 }
