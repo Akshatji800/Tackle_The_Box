@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:tackle_the_box/task_pages/allTasks.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 String img_URL2 = "https://cdn.dribbble.com/users/2207/screenshots/2254886/media/74403b1f22eb0d52e3feaabb47a42bc4.gif";
 String img_URL = "https://assets.teenvogue.com/photos/57e3fd61940fe4b8164defc0/16:9/w_1,c_limit/instagram-likes.gif";
 Future<Map> getPlayListData() async{
@@ -55,9 +56,19 @@ Future<Map> getPlayListData() async{
   for(int i=0;i<20;i++){
     playlist_song_count.add(Playdata['items'][i]['tracks']['total']);
     playlist_name.add(Playdata['items'][i]['name']);
-    playlist_links.add(Playdata['items'][i]['owner']['href']);
+    playlist_links.add(Playdata['items'][i]['href']);
   }
-  print(playlist_song_count);
+  for (int i = 1; i <= 20; i++) {
+    var link = playlist_links[i - 1];
+    var url_temp = Uri.parse(link);
+    var res_temp = await http.get(url_temp, headers: HEADERS);
+    if (res_temp.statusCode != 200)
+      throw Exception('http.get error: statusCode= ${res_temp.statusCode}');
+    //print(res.body);
+    final parsed = json.decode(res_temp.body).cast<String, dynamic>();
+    playlist_likes.add(parsed['followers']['total']);
+  }
+
   final pl_count = total;
   final pl_links_api = playlist_links;
   final pl_names = playlist_name;
@@ -66,6 +77,7 @@ Future<Map> getPlayListData() async{
   final pl_image_link = playlist_pic_link;
   final pl_links_spotify = playlist_spotify_link;
   print(pl_links_spotify);
+  print(pl_likes);
   print(
     pl_count,
   );
@@ -125,6 +137,18 @@ class _TaskDashboardState extends State<TaskSeventeen> {
   Map? dataFuture;
   Future<void>? _launched;
   // late Future<Map> futurePlaylist;
+  final List<BarChartModel> data = [
+    BarChartModel(
+        year: "2014",
+        financial: 250,
+        color: charts.ColorUtil.fromDartColor(Colors.black)),
+    BarChartModel(
+        year: "2015",
+        financial: 450,
+        color: charts.ColorUtil.fromDartColor(Colors.green))
+  ];
+  final List<BarChartModelLikes> likeData = [];
+  final List<BarChartModelSongs> songData = [];
 
   _TaskDashboardState(){
     getPlayListData().then((value)=>setState((){
@@ -150,6 +174,49 @@ class _TaskDashboardState extends State<TaskSeventeen> {
     final pl_picture = dataFuture?["Play List Image Link"];
     final pl_link = dataFuture?["Play List Link"];
     print(dataFuture);
+
+    // for (int index = 1; index <= pl_count; index++)
+    //   likeData.add(BarChartModelLikes(
+    //       name: "$index", //pl_names[index - 1],
+    //       likes: pl_likes[index - 1],
+    //       color: charts.ColorUtil.fromDartColor(Colors.green)));
+    // for (int index = 1; index <= pl_count; index++)
+    //   songData.add(BarChartModelSongs(
+    //       name: "$index", //pl_names[index - 1],
+    //       songs: pl_song_cnt[index - 1],
+    //       color: charts.ColorUtil.fromDartColor(Colors.green)));
+    //
+    // List<charts.Series<BarChartModel, String>> series = [
+    //   charts.Series(
+    //     id: "Finanacial",
+    //     data: data,
+    //     domainFn: (BarChartModel series, _) => series.year,
+    //     measureFn: (BarChartModel series, _) => series.financial,
+    //     colorFn: (BarChartModel series, _) => series.color,
+    //   ),
+    // ];
+    //
+    // List<charts.Series<BarChartModelLikes, String>> seriesLikes = [
+    //   charts.Series(
+    //     id: "Likes",
+    //     data: likeData,
+    //     domainFn: (BarChartModelLikes seriesLikes, _) => seriesLikes.name,
+    //     measureFn: (BarChartModelLikes seriesLikes, _) => seriesLikes.likes,
+    //     colorFn: (BarChartModelLikes seriesLikes, _) => seriesLikes.color,
+    //   ),
+    // ];
+    //
+    // List<charts.Series<BarChartModelSongs, String>> seriesSongs = [
+    //   charts.Series(
+    //     id: "Number of Songs",
+    //     data: songData,
+    //     domainFn: (BarChartModelSongs seriesSongs, _) => seriesSongs.name,
+    //     measureFn: (BarChartModelSongs seriesSongs, _) => seriesSongs.songs,
+    //     colorFn: (BarChartModelSongs seriesSongs, _) => seriesSongs.color,
+    //   ),
+    // ];
+
+    if(pl_count>0){
     return Scaffold(
 
       appBar: AppBar(
@@ -178,7 +245,11 @@ class _TaskDashboardState extends State<TaskSeventeen> {
             mainAxisSpacing: 12.0,
             padding: EdgeInsets.symmetric(horizontal: 4.0,vertical: 8.0),
             itemBuilder: (c,i){
-              if(i==2 || i==1) {
+              // if(i==1){
+              //   return charts.BarChart(seriesSongs,animate: true);
+              //
+              // }
+              if(i==1 || i==2) {
                 return Container(
                   // color: i%2==0? Colors.black: Colors.deepOrange,
                   child: Center(
@@ -225,19 +296,20 @@ class _TaskDashboardState extends State<TaskSeventeen> {
                   // color: i%2==0? Colors.black: Colors.deepOrange,
 
                   padding: EdgeInsets.all(5),
-                  child: Column(
+                  child: ListView(
                     children: [
                       DataTable(
-                          columns:[DataColumn(label: Text('Name'),),
-                            DataColumn(label: Text('ID')),
+                        columnSpacing: 10.0,
+                          columns:[DataColumn(label: Text('ID'),),
+                            DataColumn(label: Text('Name')),
                             DataColumn(label: Text('Followers'),),
                             DataColumn(label: Text('Tracks'),)],
                           rows: [
-                            for(int index = 0;index<=10;index++)
+                            for(int index = 0;index<20;index++)
                               DataRow(cells:[
                                 DataCell(Text('$index')),
                                 DataCell(Text('${pl_names[index]}')),
-                                DataCell(Text('Hello')),
+                                DataCell(Text('${pl_likes[index]}')),
                                 DataCell(Text('${pl_song_cnt[index]}')),
                               ])
                           ]),
@@ -261,7 +333,10 @@ class _TaskDashboardState extends State<TaskSeventeen> {
             },
             staggeredTileBuilder:(index){
               if(index==0){
-              return StaggeredTile.count(2, 4);}
+              return StaggeredTile.count(2, 3);}
+              // if(index==1){
+              //   return StaggeredTile.count(2,3);
+              // }
               if(index<=2 && index>=1){
                 return StaggeredTile.count(1, 1);
               }
@@ -310,9 +385,39 @@ class _TaskDashboardState extends State<TaskSeventeen> {
 
 
     );
+    }
+    return const CircularProgressIndicator();
+
   }
 }
+
 class Data{
   final String name, total;
   Data(this.name, this.total);
+}
+class BarChartModel {
+  String year;
+  int financial;
+  final charts.Color color;
+
+  BarChartModel(
+      {required this.year, required this.financial, required this.color});
+}
+
+class BarChartModelLikes {
+  String name;
+  int likes;
+  final charts.Color color;
+
+  BarChartModelLikes(
+      {required this.name, required this.likes, required this.color});
+}
+
+class BarChartModelSongs {
+  String name;
+  int songs;
+  final charts.Color color;
+
+  BarChartModelSongs(
+      {required this.name, required this.songs, required this.color});
 }
