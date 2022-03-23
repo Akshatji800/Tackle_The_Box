@@ -415,7 +415,7 @@ class _TaskDashboardState extends State<TaskTwenty> {
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.white))),
                                     DataColumn(
-                                        label: Text('Likes',
+                                        label: Text('Songs',
                                             style: TextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold,
