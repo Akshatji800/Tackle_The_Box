@@ -1,0 +1,2 @@
+String token = 'BQACJeMXp9adc6eicIcJUuO12N7kS2NwA-tcUX-43p-1or2oXCR8ZxnishyCKsUbacx2rS9R9dVXpjTj33ZxcOOSGfkzJAs_cRpDVwGK_IeRkiqpIinXNBVuvTJxegbSeqU8jLDdqCiEMXab344mBFoJtOLYRZLDGQslROJc9zd6K3CSEBQKxM4_u-Q';
+String url = 'https://api.spotify.com/v1/me/playlists';
