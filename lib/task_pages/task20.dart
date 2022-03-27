@@ -1,8 +1,13 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_new, camel_case_types, prefer_typing_uninitialized_variables, non_constant_identifier_names
+
+import 'package:flutter/cupertino.dart';
+import 'dart:io' show Platform;
+
 import 'components/data.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'components/items.dart';
+import 'components/detailsscreen.dart';
 
 class ChartModel {
   String year;
@@ -75,6 +80,8 @@ class _TaskDashboardState extends State<TaskTwenty> {
     final playlist_likes = finalData?["likes"];
     final playlist_song_count = finalData?["song_count"];
     final playlist_images_url = finalData?["img_link"];
+    final playlist_owners = finalData?["owner"];
+
     Size size = MediaQuery.of(context).size;
 
     while (playlist_count == null) {
@@ -155,13 +162,21 @@ class _TaskDashboardState extends State<TaskTwenty> {
                   ),
                   elevation: 0,
                   leading: IconButton(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    icon: const Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
-                    ),
+                    icon: Platform.isIOS
+                        ? Icon(
+                            CupertinoIcons.chevron_left,
+                            size: 25,
+                            color: Colors.white,
+                          )
+                        : Icon(
+                            Icons.arrow_back,
+                            size: 25,
+                            color: Colors.white,
+                          ),
                   ),
                 ),
                 body: TabBarView(children: [
@@ -178,12 +193,14 @@ class _TaskDashboardState extends State<TaskTwenty> {
                         child: Column(
                           children: <Widget>[
                             getWidget(
-                                playlist_count: playlist_count,
-                                playlist_images_url: playlist_images_url,
-                                size: size,
-                                playlist_names: playlist_names,
-                                playlist_song_count: playlist_song_count,
-                                playlist_likes: playlist_likes),
+                              playlist_count: playlist_count,
+                              playlist_images_url: playlist_images_url,
+                              size: size,
+                              playlist_names: playlist_names,
+                              playlist_song_count: playlist_song_count,
+                              playlist_likes: playlist_likes,
+                              playlist_owners: playlist_owners,
+                            ),
                           ],
                         ),
                       ),
@@ -202,7 +219,7 @@ class _TaskDashboardState extends State<TaskTwenty> {
                       child: Column(
                         children: [
                           Container(
-                            height: 275,
+                            height: MediaQuery.of(context).size.height * 0.35,
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                                 gradient: LinearGradient(
@@ -252,63 +269,65 @@ class _TaskDashboardState extends State<TaskTwenty> {
                                               charts.MaterialPalette.black))),
                             ),
                           ),
-                          InteractiveViewer(
-                            constrained: true,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                    // ignore: prefer_const_literals_to_create_immutables
-                                    colors: [
-                                      Color(0xff7A69C7),
-                                      Color(0xffb06ab3),
-                                    ]),
-                              ),
-                              height: 419,
-                              width: MediaQuery.of(context).size.width,
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.vertical,
-                                child: DataTable(
-                                  // ignore: prefer_const_literals_to_create_immutables
-                                  columns: [
-                                    DataColumn(
-                                        label: Text('#',
-                                            style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white))),
-                                    DataColumn(
-                                        label: Text('Playlist',
-                                            style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white))),
-                                    DataColumn(
-                                        label: Text('Followers',
-                                            style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white))),
-                                  ],
-                                  rows: [
-                                    for (int count = 1;
-                                        count <= playlist_count;
-                                        count++)
-                                      DataRow(cells: [
-                                        DataCell(Text('$count',
-                                            style: TextStyle(
-                                                color: Colors.white))),
-                                        DataCell(Text(
-                                            '${playlist_names[count - 1]}',
-                                            style: TextStyle(
-                                                color: Colors.white))),
-                                        DataCell(Text(
-                                            '${playlist_likes[count - 1]}',
-                                            style: TextStyle(
-                                                color: Colors.white))),
+                          Expanded(
+                            child: InteractiveViewer(
+                              constrained: true,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      // ignore: prefer_const_literals_to_create_immutables
+                                      colors: [
+                                        Color(0xff7A69C7),
+                                        Color(0xffb06ab3),
                                       ]),
-                                  ],
+                                ),
+                                // height: 419,
+                                width: MediaQuery.of(context).size.width,
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
+                                  child: DataTable(
+                                    // ignore: prefer_const_literals_to_create_immutables
+                                    columns: [
+                                      DataColumn(
+                                          label: Text('#',
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white))),
+                                      DataColumn(
+                                          label: Text('Playlist',
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white))),
+                                      DataColumn(
+                                          label: Text('Followers',
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white))),
+                                    ],
+                                    rows: [
+                                      for (int count = 1;
+                                          count <= playlist_count;
+                                          count++)
+                                        DataRow(cells: [
+                                          DataCell(Text('$count',
+                                              style: TextStyle(
+                                                  color: Colors.white))),
+                                          DataCell(Text(
+                                              '${playlist_names[count - 1]}',
+                                              style: TextStyle(
+                                                  color: Colors.white))),
+                                          DataCell(Text(
+                                              '${playlist_likes[count - 1]}',
+                                              style: TextStyle(
+                                                  color: Colors.white))),
+                                        ]),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -331,7 +350,7 @@ class _TaskDashboardState extends State<TaskTwenty> {
                       child: Column(
                         children: [
                           Container(
-                            height: 275,
+                            height: MediaQuery.of(context).size.height * 0.35,
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                                 gradient: LinearGradient(
@@ -381,64 +400,66 @@ class _TaskDashboardState extends State<TaskTwenty> {
                                               charts.MaterialPalette.black))),
                             ),
                           ),
-                          InteractiveViewer(
-                            constrained: true,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                    // ignore: prefer_const_literals_to_create_immutables
-                                    colors: [
-                                      Color(0xff7A69C7),
-                                      Color(0xffb06ab3),
-                                    ]),
-                              ),
-                              alignment: Alignment.topCenter,
-                              height: 419,
-                              width: MediaQuery.of(context).size.width,
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.vertical,
-                                child: DataTable(
-                                  // ignore: prefer_const_literals_to_create_immutables
-                                  columns: [
-                                    DataColumn(
-                                        label: Text('#',
-                                            style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white))),
-                                    DataColumn(
-                                        label: Text('Playlist',
-                                            style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white))),
-                                    DataColumn(
-                                        label: Text('Songs',
-                                            style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white))),
-                                  ],
-                                  rows: [
-                                    for (int count = 1;
-                                        count <= playlist_count;
-                                        count++)
-                                      DataRow(cells: [
-                                        DataCell(Text('$count',
-                                            style: TextStyle(
-                                                color: Colors.white))),
-                                        DataCell(Text(
-                                            '${playlist_names[count - 1]}',
-                                            style: TextStyle(
-                                                color: Colors.white))),
-                                        DataCell(Text(
-                                            '${playlist_song_count[count - 1]}',
-                                            style: TextStyle(
-                                                color: Colors.white))),
+                          Expanded(
+                            child: InteractiveViewer(
+                              constrained: true,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      // ignore: prefer_const_literals_to_create_immutables
+                                      colors: [
+                                        Color(0xff7A69C7),
+                                        Color(0xffb06ab3),
                                       ]),
-                                  ],
+                                ),
+                                alignment: Alignment.topCenter,
+                                // height: 419,
+                                width: MediaQuery.of(context).size.width,
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
+                                  child: DataTable(
+                                    // ignore: prefer_const_literals_to_create_immutables
+                                    columns: [
+                                      DataColumn(
+                                          label: Text('#',
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white))),
+                                      DataColumn(
+                                          label: Text('Playlist',
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white))),
+                                      DataColumn(
+                                          label: Text('Songs',
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white))),
+                                    ],
+                                    rows: [
+                                      for (int count = 1;
+                                          count <= playlist_count;
+                                          count++)
+                                        DataRow(cells: [
+                                          DataCell(Text('$count',
+                                              style: TextStyle(
+                                                  color: Colors.white))),
+                                          DataCell(Text(
+                                              '${playlist_names[count - 1]}',
+                                              style: TextStyle(
+                                                  color: Colors.white))),
+                                          DataCell(Text(
+                                              '${playlist_song_count[count - 1]}',
+                                              style: TextStyle(
+                                                  color: Colors.white))),
+                                        ]),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -460,6 +481,7 @@ class getWidget extends StatelessWidget {
     required this.playlist_names,
     required this.playlist_song_count,
     required this.playlist_likes,
+    required this.playlist_owners,
   }) : super(key: key);
 
   final playlist_count;
@@ -468,29 +490,33 @@ class getWidget extends StatelessWidget {
   final playlist_names;
   final playlist_song_count;
   final playlist_likes;
+  final playlist_owners;
 
   @override
   Widget build(BuildContext context) {
     return page1build(
-        playlist_count: playlist_count,
-        playlist_images_url: playlist_images_url,
-        size: size,
-        playlist_names: playlist_names,
-        playlist_song_count: playlist_song_count,
-        playlist_likes: playlist_likes);
+      playlist_count: playlist_count,
+      playlist_images_url: playlist_images_url,
+      size: size,
+      playlist_names: playlist_names,
+      playlist_song_count: playlist_song_count,
+      playlist_likes: playlist_likes,
+      playlist_owners: playlist_owners,
+    );
   }
 }
 
 class page1build extends StatelessWidget {
-  const page1build({
-    Key? key,
-    required this.playlist_count,
-    required this.playlist_images_url,
-    required this.size,
-    required this.playlist_names,
-    required this.playlist_song_count,
-    required this.playlist_likes,
-  }) : super(key: key);
+  const page1build(
+      {Key? key,
+      required this.playlist_count,
+      required this.playlist_images_url,
+      required this.size,
+      required this.playlist_names,
+      required this.playlist_song_count,
+      required this.playlist_likes,
+      required this.playlist_owners})
+      : super(key: key);
 
   final playlist_count;
   final playlist_images_url;
@@ -498,6 +524,7 @@ class page1build extends StatelessWidget {
   final playlist_names;
   final playlist_song_count;
   final playlist_likes;
+  final playlist_owners;
 
   @override
   Widget build(BuildContext context) {
@@ -514,12 +541,14 @@ class page1build extends StatelessWidget {
                 )),
           ),
           Builder(
-              playlist_count: playlist_count,
-              playlist_images_url: playlist_images_url,
-              size: size,
-              playlist_names: playlist_names,
-              playlist_song_count: playlist_song_count,
-              playlist_likes: playlist_likes)
+            playlist_count: playlist_count,
+            playlist_images_url: playlist_images_url,
+            size: size,
+            playlist_names: playlist_names,
+            playlist_song_count: playlist_song_count,
+            playlist_likes: playlist_likes,
+            playlist_owners: playlist_owners,
+          )
         ],
       ),
     );
@@ -535,6 +564,7 @@ class Builder extends StatelessWidget {
     required this.playlist_names,
     required this.playlist_song_count,
     required this.playlist_likes,
+    required this.playlist_owners,
   }) : super(key: key);
 
   final playlist_count;
@@ -543,18 +573,41 @@ class Builder extends StatelessWidget {
   final playlist_names;
   final playlist_song_count;
   final playlist_likes;
+  final playlist_owners;
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: playlist_count,
-        itemBuilder: ((context, index) => Itmes(
-              playlist_images_url: playlist_images_url,
-              size: size,
-              playlist_names: playlist_names,
-              playlist_song_count: playlist_song_count,
-              playlist_likes: playlist_likes,
-              index: index,
-            )));
+    return GestureDetector(
+        child: ListView.builder(
+            itemCount: playlist_count,
+            itemBuilder: ((context, index) {
+              return GestureDetector(
+                child: Container(
+                  child: Itmes(
+                    playlist_images_url: playlist_images_url,
+                    size: size,
+                    playlist_names: playlist_names,
+                    playlist_song_count: playlist_song_count,
+                    playlist_likes: playlist_likes,
+                    index: index,
+                  ),
+                ),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Details(
+                          count: index,
+                          playlistName: playlist_names,
+                          playlistImg: playlist_images_url,
+                          playlistCount: playlist_count,
+                          totalSongs: playlist_song_count,
+                          followers: playlist_likes,
+                          owners: playlist_owners,
+                        ),
+                      ));
+                },
+              );
+            })));
   }
 }

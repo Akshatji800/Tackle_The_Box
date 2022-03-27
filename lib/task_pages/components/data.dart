@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import 'items.dart';
-
 Future<Map> getData() async {
   // Have to find a way to hide this stuff
   const map = {
@@ -22,12 +20,9 @@ Future<Map> getData() async {
   if (tokenResponse.statusCode != 200) {
     throw Exception('http.post error: statusCode= ${tokenResponse.statusCode}');
   }
-  
 
   var accessToken =
       json.decode(tokenResponse.body).cast<String, dynamic>()['access_token'];
-
-  
 
   var headersForRequests = {
     'Accept': 'application/json',
@@ -41,7 +36,6 @@ Future<Map> getData() async {
 
   final playlistData =
       json.decode(playlistResponse.body).cast<String, dynamic>();
-  
 
   final noOfPlaylists = playlistData['total'];
   List<String> links = [];
@@ -49,6 +43,8 @@ Future<Map> getData() async {
   List<int> likes = [];
   List<int> songCount = [];
   List<String> imgLink = [];
+  // List<String> trackNames = [];
+  List<String> owners = [];
 
 // Add names, links , song_count , playlistURLs(for getting followers)
 
@@ -72,6 +68,15 @@ Future<Map> getData() async {
         json.decode(specificPlaylistResponse.body).cast<String, dynamic>();
 
     likes.add(specificPlaylistData['followers']['total']);
+    owners.add(specificPlaylistData['owner']['display_name']);
+    // for (var item in songCount) {
+    //   print(item);
+    //   for (var i = 1; i <= item; i++) {
+    //     trackNames.add(specificPlaylistData['tracks']['items'][i - 1]['track']
+    //         ['album']['name']);
+    //     // debugPrint("song no: $item");
+    //   }
+    // }
   }
 
   var dataForOutput = {
@@ -80,7 +85,10 @@ Future<Map> getData() async {
     "likes": likes,
     "song_count": songCount,
     "img_link": imgLink,
+    "owner": owners,
+    // "track_names": trackNames,
   };
+  debugPrint('data fetched');
 
   return dataForOutput;
 }
