@@ -43,8 +43,9 @@ Future<Map> getData() async {
   List<int> likes = [];
   List<int> songCount = [];
   List<String> imgLink = [];
-  // List<String> trackNames = [];
+  var trackNames = [];
   List<String> owners = [];
+  List<int> s2 = [];
 
 // Add names, links , song_count , playlistURLs(for getting followers)
 
@@ -69,14 +70,31 @@ Future<Map> getData() async {
 
     likes.add(specificPlaylistData['followers']['total']);
     owners.add(specificPlaylistData['owner']['display_name']);
-    // for (var item in songCount) {
-    //   print(item);
-    //   for (var i = 1; i <= item; i++) {
-    //     trackNames.add(specificPlaylistData['tracks']['items'][i - 1]['track']
-    //         ['album']['name']);
-    //     // debugPrint("song no: $item");
-    //   }
-    // }
+  }
+  for (int i = 0; i < noOfPlaylists; i++) {
+    var playlistUrl2 = links[i] + "/tracks";
+    var playlistParsedUrl = Uri.parse(playlistUrl2);
+
+    var specificPlaylistResponse =
+        await http.get(playlistParsedUrl, headers: headersForRequests);
+
+    final specificPlaylistData =
+        json.decode(specificPlaylistResponse.body).cast<String, dynamic>();
+    s2.add(specificPlaylistData['items'].length);
+    for (int j = 0; j < specificPlaylistData['items'].length; j++) {
+      trackNames.add(specificPlaylistData['items'][j]['track']['name']);
+    }
+  }
+
+  int k = 0;
+  int j = 0;
+  var newlst = [];
+
+  for (var i in s2) {
+    k = k + i;
+
+    newlst.add(trackNames.sublist(j, k));
+    j = j + i;
   }
 
   var dataForOutput = {
@@ -86,7 +104,7 @@ Future<Map> getData() async {
     "song_count": songCount,
     "img_link": imgLink,
     "owner": owners,
-    // "track_names": trackNames,
+    "tracks": newlst,
   };
   debugPrint('data fetched');
 

@@ -1,8 +1,6 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_new, camel_case_types, prefer_typing_uninitialized_variables, non_constant_identifier_names
-
 import 'package:flutter/cupertino.dart';
 import 'dart:io' show Platform;
-
 import 'components/data.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
@@ -81,6 +79,7 @@ class _TaskDashboardState extends State<TaskTwenty> {
     final playlist_song_count = finalData?["song_count"];
     final playlist_images_url = finalData?["img_link"];
     final playlist_owners = finalData?["owner"];
+    final track_list = finalData?["tracks"];
 
     Size size = MediaQuery.of(context).size;
 
@@ -200,6 +199,7 @@ class _TaskDashboardState extends State<TaskTwenty> {
                               playlist_song_count: playlist_song_count,
                               playlist_likes: playlist_likes,
                               playlist_owners: playlist_owners,
+                              track_list: track_list,
                             ),
                           ],
                         ),
@@ -482,6 +482,7 @@ class getWidget extends StatelessWidget {
     required this.playlist_song_count,
     required this.playlist_likes,
     required this.playlist_owners,
+    required this.track_list,
   }) : super(key: key);
 
   final playlist_count;
@@ -491,6 +492,7 @@ class getWidget extends StatelessWidget {
   final playlist_song_count;
   final playlist_likes;
   final playlist_owners;
+  final track_list;
 
   @override
   Widget build(BuildContext context) {
@@ -502,6 +504,7 @@ class getWidget extends StatelessWidget {
       playlist_song_count: playlist_song_count,
       playlist_likes: playlist_likes,
       playlist_owners: playlist_owners,
+      track_list: track_list,
     );
   }
 }
@@ -515,7 +518,8 @@ class page1build extends StatelessWidget {
       required this.playlist_names,
       required this.playlist_song_count,
       required this.playlist_likes,
-      required this.playlist_owners})
+      required this.playlist_owners,
+      required this.track_list})
       : super(key: key);
 
   final playlist_count;
@@ -525,6 +529,7 @@ class page1build extends StatelessWidget {
   final playlist_song_count;
   final playlist_likes;
   final playlist_owners;
+  final track_list;
 
   @override
   Widget build(BuildContext context) {
@@ -548,6 +553,7 @@ class page1build extends StatelessWidget {
             playlist_song_count: playlist_song_count,
             playlist_likes: playlist_likes,
             playlist_owners: playlist_owners,
+            track_list: track_list,
           )
         ],
       ),
@@ -565,6 +571,7 @@ class Builder extends StatelessWidget {
     required this.playlist_song_count,
     required this.playlist_likes,
     required this.playlist_owners,
+    required this.track_list,
   }) : super(key: key);
 
   final playlist_count;
@@ -574,6 +581,7 @@ class Builder extends StatelessWidget {
   final playlist_song_count;
   final playlist_likes;
   final playlist_owners;
+  final track_list;
 
   @override
   Widget build(BuildContext context) {
@@ -604,6 +612,8 @@ class Builder extends StatelessWidget {
                           totalSongs: playlist_song_count,
                           followers: playlist_likes,
                           owners: playlist_owners,
+                          track_list: track_list,
+                          index: index,
                         ),
                       ));
                 },

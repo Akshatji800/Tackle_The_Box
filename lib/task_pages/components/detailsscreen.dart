@@ -14,6 +14,8 @@ class Details extends StatefulWidget {
     required this.totalSongs,
     required this.followers,
     required this.owners,
+    required this.track_list,
+    required this.index,
   }) : super(key: key);
   final count;
   final playlistName;
@@ -22,6 +24,8 @@ class Details extends StatefulWidget {
   final totalSongs;
   final followers;
   final owners;
+  final track_list;
+  final index;
 
   @override
   _DetailsState createState() => _DetailsState();
@@ -65,6 +69,8 @@ class _DetailsState extends State<Details> {
         totalSongs: widget.totalSongs,
         followers: widget.followers,
         owners: widget.owners,
+        tracks: widget.track_list,
+        index: widget.index,
       ),
     );
   }
