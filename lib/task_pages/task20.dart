@@ -96,10 +96,17 @@ class _TaskDashboardState extends State<TaskTwenty> {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            ),
+            icon: Platform.isIOS
+                ? Icon(
+                    CupertinoIcons.chevron_left,
+                    size: 25,
+                    color: Colors.white,
+                  )
+                : Icon(
+                    Icons.arrow_back,
+                    size: 25,
+                    color: Colors.white,
+                  ),
           ),
         ),
         body: const Center(child: CircularProgressIndicator()),
